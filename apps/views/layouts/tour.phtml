@@ -1,0 +1,26 @@
+<?php if( !empty($record) ): ?>
+
+<?php echo $this->partial('common/changeBg'); ?>
+
+<div id="tour-box" bg-url="<?php echo $record->bg_url; ?>" data-pk="<?php echo $record->id; ?>">
+    <div class="wrap"> 
+        <div class="tour tac">
+            <a href="<?php echo $this->url->get('tour@' . $record->id); ?>"><img class="profile" src="<?php echo $this->config->url->img, $record->face_url; ?>!130x87" width="130" height="87" /></a>
+            <h1 class="entry-title"><a title="<?php echo $record->title; ?>" href="<?php echo $this->url->get('tour@' . $record->id); ?>"><?php echo $record->title; ?></a></h1>
+            <div class="entry-desc">
+                <p><?php echo $record->description; ?></p>
+            </div>
+        </div>
+        <div id="tour-main">
+            <div class="content">
+                <?php echo $this->getContent(); ?>
+            </div><!-- #content -->
+        </div><!-- #tour-main -->
+    </div>
+</div>
+
+<script type="text/javascript">
+    var component = ["cptTourFun"];
+</script>
+
+<?php endif; ?>

@@ -1,0 +1,33 @@
+<a name="read"></a>
+<div class="entry-content">
+<?php foreach ($records as $row): ?>
+    <div class="imgbox">
+        <a href="javascript:;"><img class="lazy" alt="" data-original="<?php echo $this->config->url->img, $row->url; ?>" src="<?php echo $this->config->url->assets; ?>/images/loading.gif" /></a>
+        <div class="desc">
+            <p><?php echo $row->description; ?></p>
+        </div>
+    </div>
+<?php endforeach; ?>
+</div>
+<div class="entry-meta">
+    由<span>bigo</span>
+    发布于<span><?php echo substr($record->update_time, 0, 11); ?>，</span>
+<?php if($record->comeform): ?>
+    来源于<span><?php echo $record->comeform; ?>，</span>
+<?php endif; ?>
+    浏览<span><?php echo $record->access_times; ?> 次</span>
+</div>
+<div class="entry-nav">
+    <span class="fgrey">上一篇：</span>
+    <?php if(!empty($prev)): ?>
+    <a class="prev" title="<?php echo $prev->title; ?>" href="<?php echo $this->url->get('tour@' . $prev->id); ?>"><?php echo $prev->title; ?></a>
+    <?php endif; ?>
+
+    <span class="r">
+        <span class="fgrey">下一篇：</span>
+        <?php if(!empty($next)): ?>
+        <a class="next" title="<?php echo $next->title; ?>" href="<?php echo $this->url->get('tour@' . $next->id); ?>"><?php echo $next->title; ?></a>
+        <?php endif; ?>
+    </span>
+</div>
+<!--上下篇-->

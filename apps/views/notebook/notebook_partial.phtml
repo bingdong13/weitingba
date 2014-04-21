@@ -1,0 +1,24 @@
+<?php foreach($records as $row): ?>
+<div class="items" id="id_note_<?php echo $row['id']; ?>">
+    <div class="care_box">
+        <div class="atitle"><a title="<?php echo $row['title']; ?>" href="<?php echo $this->url->get('notebook@' . $row['id']); ?>" target="_blank"><?php echo $row['title']; ?></a></div>
+        <div class="desc adesc"><?php echo $row['description']; ?></div>
+        <div class="care_tool">
+            <?php echo $row['create_time']; ?>
+            <a class="ml5" href="<?php echo $this->url->get('notebook_' . $row['category_id']); ?>"><?php echo $row['category_name']; ?></a>
+            <!--<span class="share_tool">
+                <span class="sline">|</span>
+                <span class="tool_area"></span>
+            </span>-->
+            <span class="pos">
+                <a href="<?php echo $this->url->get('notebook@' . $row['id']); ?>" target="_blank">阅读全文（<?php echo $row['access_times']; ?>）</a>
+            <?php if( $isLogin ): ?>
+                <a href="<?php echo $this->url->get('backend/editNote/' . $note->id); ?>" target="_blank">修改</a>
+                <a class="change_class" href="javascript:;" data-url="<?php echo $this->url->get('notebook/changeCategory/' . $row['id']); ?>" title="重置分类">移动</a>
+                <a href="javascript:;" onclick="return delNotebook(<?php echo $row['id']; ?>, <?php echo $row['category_id']; ?>);">删除</a>
+            <?php endif; ?>
+            </span>
+        </div>
+    </div>
+</div>
+<?php endforeach; ?>

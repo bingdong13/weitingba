@@ -1,0 +1,16 @@
+<form id="idLoginForm" method="post" action="<?php echo $this->url->get('passport/doLogin'); ?>" onsubmit="return false;">
+    <div class="form_items">
+        <label class="items">账号：</label>
+        <input id="id_username" type="text" name="username" tabindex="1" class="ins" nullmsg="请输入账号。" />
+        <em id="id_username_msg"></em>
+    </div>
+    <div class="form_items">
+        <label class="items">密码：</label>
+        <input id="id_password" type="password" name="password" tabindex="2" class="ins" nullmsg="请输入密码。" />
+        <em id="id_password_msg"></em>
+    </div>
+    <div class="form_items pl80">
+        <input type="hidden" name="<?php echo $this->security->getTokenKey() ?>" value="<?php echo $this->security->getToken() ?>" />
+        <button id="id_save_btn" type="submit" class="btnIcon btn" tabindex="3" locked-msg="登录中...">立即登录</button>
+    </div>
+</form>

@@ -1,0 +1,31 @@
+<div class="wrap main">
+    <div class="mleft fl">
+        <h2>
+            <?php echo isset($ptitle) ? $ptitle : ''; ?>
+            <a href="javascript:;" class="mr10" onclick="history.back();">返回</a>
+        </h2>
+        <?php echo $this->getContent(); ?>
+    </div>
+    <div class="mright fl">
+        <h2>个人资料</h2>
+        <ul class="menu">
+            <li class="icons topic"><a href="<?php echo $this->url->get('account'); ?>"><?php echo Lang::tip('TEditAccount'); ?></a></li>
+            <li class="icons topic"><a href="<?php echo $this->url->get('account/password'); ?>"><?php echo Lang::tip('TEditPassword'); ?></a></li>
+        </ul>
+        <h2>栏目管理</h2>
+        <ul class="menu">
+            <li class="icons topic"><a href="<?php echo $this->url->get('backend/board'); ?>"><?php echo Lang::tip('TBoard'); ?></a> | <a href="<?php echo $this->url->get('backend/addBoard'); ?>">发布</a></li>
+            <li class="icons topic"><a href="<?php echo $this->url->get('backend/category'); ?>"><?php echo Lang::tip('TCategory'); ?></a> | <a href="<?php echo $this->url->get('backend/addCategory'); ?>">新增</a></li>
+            <li class="icons topic"><a href="<?php echo $this->url->get('backend/notebook'); ?>"><?php echo Lang::tip('TNotebook'); ?></a> | <a href="<?php echo $this->url->get('backend/addNote'); ?>">新增</a></li>
+            <li class="icons topic"><a href="<?php echo $this->url->get('backend/magazine'); ?>"><?php echo Lang::tip('TMagazine'); ?></a> | <a href="<?php echo $this->url->get('backend/addMagazine'); ?>">新增</a></li>
+            <li class="icons topic"><a href="<?php echo $this->url->get('backend/fm'); ?>"> <?php echo Lang::tip('TFm'); ?></a> | <a href="<?php echo $this->url->get('backend/addFm'); ?>">新增</a></li>
+            <li class="icons topic"><a href="<?php echo $this->url->get('backend/tour'); ?>"> <?php echo Lang::tip('TTour'); ?></a> | <a href="<?php echo $this->url->get('backend/addTour'); ?>">新增</a></li>
+        </ul>
+        <h2>系统管理</h2>
+        <ul class="menu">
+            <li class="icons topic"><a href="<?php echo $this->url->get('system/cache'); ?>"><?php echo Lang::tip('TCacheList'); ?></a></li>
+            <li class="icons topic"><a href="<?php echo $this->url->get('system/backdrop'); ?>"><?php echo Lang::tip('TBackdrop'); ?></a></li>
+        </ul>
+    </div>
+    <br class="clear" />
+</div>

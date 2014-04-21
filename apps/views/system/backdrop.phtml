@@ -1,0 +1,17 @@
+<div class="abox">
+    <div class="prompt"></div>
+    <ul id="bgdp" class="record fl">
+	<?php foreach($records as $record): ?>
+        <li>
+            <a target="_blank" href="<?php echo $this->config->url->img, $record->url; ?>" title="点击大图">
+                <img src="<?php echo $this->config->url->img, $record->url; ?>!50" height="50" width="50" />
+            </a>
+            <p><?php echo $sites[$record->site]; ?></p>
+            <p><?php echo substr($record->create_time, 0, 11); ?></p>
+            <p><a href="javascript:;">删除</a></p>
+        </li>
+    <?php endforeach; ?>
+    </ul>
+    <br class="clear" />
+    <div class="pagination pagination-centered"><?php echo $pagenav;?></div>
+</div>

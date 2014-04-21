@@ -1,0 +1,15 @@
+<ul id="category" class="fl">
+<?php foreach($categorys as $row): ?>
+    <li>
+        <img class="lazy" alt="<?php echo $row['title']; ?>" data-original="<?php echo $this->config->url->img, $row['face_url']; ?>!50" src="<?php echo $this->config->url->assets; ?>/images/loading.gif" height="50" width="50" />
+        <p class="nick">
+            <a href="<?php echo $this->url->get($this->dispatcher->getControllerName() . '_' . $row['id']); ?>"><?php echo $row['title']; ?></a>
+            （<span id="ctotal<?php echo $row['id']; ?>"><?php echo $row['numbers']; ?></span>）
+        <?php if($isLogin): ?>
+            <a class="rtxt" target="_blank" href="<?php echo $this->url->get('backend/editCategory/' . $row['id']); ?>">修改</a>
+        <?php endif; ?>
+        </p>
+        <p><?php echo $row['description']; ?></p>
+    </li>
+<?php endforeach; ?>
+</ul>

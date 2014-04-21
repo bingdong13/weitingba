@@ -1,0 +1,14 @@
+<div class="related-posts">
+    <h3>全部作品</h3>
+    <ul>
+    <?php foreach ($records as $row): ?>
+        <li class="related-box">
+            <a target="_blank" href="<?php echo $this->url->get('tour@' . $row['id']); ?>">
+                <img src="<?php echo $this->config->url->img, $row['face_url']; ?>!130x87" alt="<?php echo $row['title']; ?>" />
+            </a>
+            <a target="_blank" href="<?php echo $this->url->get('tour@' . $row['id']); ?>"><?php echo $row['title']; ?></a>
+        </li>
+    <?php endforeach; ?>
+    </ul>
+    <br class="clear" />
+</div>

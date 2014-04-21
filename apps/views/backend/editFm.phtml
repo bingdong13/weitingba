@@ -1,0 +1,61 @@
+<div class="faceBox">
+    <div class="uploadBox">
+        <form name="uploadForm">
+            <input id="file_upload" name="file_upload" type="file" />
+        </form>
+    </div>
+    <div class="ImgBox">
+        <img id="preview" src="<?php echo $this->config->url->img, $fm->face_url; ?>" width="80" height="80" />
+    </div>
+    <button id="jcropBtn" class="icons btns" data-url="" title="裁剪图片">裁 剪</button>
+</div>
+
+<div class="abox">
+    <div class="prompt"></div>
+    <form id="id_fmForm" method="post" action="<?php echo $this->url->get('backend/saveFm'); ?>" onsubmit="return false;">
+    <div class="form_items">
+        <label class="items">标题：</label>
+        <input id="id_title" type="text" name="info[title]" class="ins normal" maxlength="20" min="1" max="20" nullmsg="请输入标题。" errormsg="由1到20个字符组成。" value="<?php echo $fm->title; ?>" />
+        <em id="id_title_msg"></em>
+    </div>
+    <div class="form_items">
+        <label class="items">主播：</label>
+        <input id="id_anchor" type="text" name="info[anchor]" class="ins normal" nullmsg="请输入主播/歌手。" value="<?php echo $fm->anchor; ?>" />
+        <select name="info[status]" class="select ml10">
+            <option value="0" <?php echo $fm->status == 0 ? 'selected="selected"' : ''?>>开播</option>
+            <option value="1" <?php echo $fm->status == 1 ? 'selected="selected"' : ''?>>停播</option>
+        </select>
+        <em id="id_anchor_msg"></em>
+    </div>
+    <div class="form_items">
+        <label class="items">音频url：</label>
+        <input id="id_voice" type="text" name="info[voice]" class="ins normal" nullmsg="请输入音频url。" value="<?php echo $fm->voice; ?>" />
+        <em id="id_voice_msg"></em>
+    </div>
+    <div class="form_items">
+        <label class="items">关键字：</label>
+        <input type="text" name="info[keywords]" class="ins" value="<?php echo $fm->keywords; ?>" />
+        <input type="text" name="info[comeform]" class="ins ml10" value="<?php echo $fm->comeform; ?>" placeholder="来源" />
+    </div>
+    <div class="form_items">
+        <label class="items">简介：</label>
+        <textarea id="id_content" name="info[description]" class="ins txt"><?php echo $fm->description; ?></textarea>
+        <p>还可以输入 <span id="max_words" class="fred">70</span> 字符</p>
+    </div>
+    <div class="form_items">
+        <label class="items">内容：</label>
+        <script id="content" type="text/plain" style="width:560px;height:100px;"><?php echo $fm->content; ?></script>
+    </div>
+    <div class="form_items pl80">
+        <input type="hidden" id="face_url" name="info[face_url]" value="<?php echo $fm->face_url; ?>" />
+        <input type="hidden" name="info[bg_url]" value="<?php echo $fm->bg_url; ?>" />
+        <input type="hidden" name="info[id]" value="<?php echo $fm->id; ?>" />
+        <input type="hidden" name="info[category_id]" value="<?php echo $fm->category_id; ?>" />
+        <button id="id_save_btn" type="submit" class="icons btns" locked-msg="提交中...">保 存</button>
+    </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    var component = ["cptFmFun"];
+</script>

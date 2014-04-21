@@ -1,0 +1,17 @@
+<div class="abox">
+    <div class="prompt">
+	<?php if(count($record)): ?>
+		<a href="javascript:;" class="mr10 cleanCache" data-pk="0">全部清除</a>
+	<?php endif; ?>
+    </div>
+    <ul id="cache" class="fl">
+    <?php foreach($record as $val): ?>
+        <li><a href="javascript:;" class="mr10 cleanCache" data-pk="<?php echo $val; ?>">删除</a><?php echo $val; ?></li>
+    <?php endforeach; ?>
+    </ul>
+    <br class="clear" />
+</div>
+
+<script type="text/javascript">
+    var component = ["cptCacheFun"];
+</script>

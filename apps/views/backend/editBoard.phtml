@@ -1,0 +1,42 @@
+<div class="faceBox">
+    <div class="uploadBox">
+        <form name="uploadForm">
+            <input id="file_upload" name="file_upload" type="file" />
+        </form>
+    </div>
+    <div class="ImgBox">
+        <img id="preview" src="<?php echo $this->config->url->img, $record->face_url; ?>" width="100" height="100" />
+    </div>
+    <button id="jcropBtn" class="icons btns" data-url="" title="裁剪图片">裁 剪</button>
+</div>
+
+<div class="abox">
+    <div class="prompt"></div>
+
+    <form id="id_boardForm" method="post" action="<?php echo $this->url->get('backend/saveBoard'); ?>" onsubmit="return false;">
+    <div class="form_items">
+        <label class="items">签名：</label>
+        <input type="text" name="info[sign]" class="ins normal" value="<?php echo $record->sign; ?>" />
+        
+    </div>
+    <div class="form_items">
+        <label class="items">链接：</label>
+        <input type="text" name="info[link_url]" class="ins normal" value="<?php echo $record->link_url; ?>" />
+    </div>
+    <div class="form_items">
+        <label class="items">内容：</label>
+        <textarea id="id_content" name="info[content]" class="ins txt" nullmsg="请输入标题。"><?php echo $record->content; ?></textarea>
+        <p>还可以输入 <span id="max_words" class="fred">120</span> 字符</p>
+        <em id="id_content_msg"></em>
+    </div>
+    <div class="form_items pl80">
+        <input type="hidden" id="face_url" name="info[face_url]" value="<?php echo $record->face_url; ?>" />
+        <input type="hidden" name="info[id]" value="<?php echo $record->id; ?>" />
+        <button id="id_save_btn" type="submit" class="icons btns" locked-msg="提交中...">保 存</button>
+    </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+        var component = ["cptBoardFun"];
+</script>

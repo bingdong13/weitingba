@@ -1,0 +1,65 @@
+<div class="faceBox">
+    <div class="uploadBox">
+        <form name="uploadForm">
+            <input id="file_upload" name="file_upload" type="file" />
+        </form>
+    </div>
+    <div class="ImgBox">
+        <img id="preview" src="" width="80" height="80" />
+    </div>
+    <button id="jcropBtn" class="icons btns" data-url="" title="裁剪图片">裁 剪</button>
+</div>
+
+<div class="abox">
+    <div class="prompt"></div>
+    <form id="id_fmForm" method="post" action="<?php echo $this->url->get('backend/saveFm'); ?>" onsubmit="return false;">
+    <div class="form_items">
+        <label class="items">标题：</label>
+        <input id="id_title" type="text" name="info[title]" class="ins normal" maxlength="20" min="1" max="20" nullmsg="请输入标题。" errormsg="由1到20个字符组成。" />
+        <select id="id_category" name="info[category_id]" class="select ml10" nullmsg="选择分类。">
+            <option value="">选择分类</option>
+            <?php foreach($categorys as $row): ?>
+            <option value="<?php echo $row['id']; ?>"><?php echo $row['title']; ?></option>
+            <?php endforeach; ?>
+        </select>
+        <em id="id_title_msg"></em>
+        <em id="id_category_msg"></em>
+    </div>
+    <div class="form_items">
+        <label class="items">主播：</label>
+        <input id="id_anchor" type="text" name="info[anchor]" class="ins normal" nullmsg="请输入主播/歌手。" />
+        <select name="info[status]" class="select ml10">
+            <option value="0">开播</option>
+            <option value="1">停播</option>
+        </select>
+        <em id="id_anchor_msg"></em>
+    </div>
+    <div class="form_items">
+        <label class="items">音频url：</label>
+        <input id="id_voice" type="text" name="info[voice]" class="ins normal" nullmsg="请输入音频url。" />
+        <em id="id_voice_msg"></em>
+    </div>
+    <div class="form_items">
+        <label class="items">关键字：</label>
+        <input type="text" name="info[keywords]" class="ins" />
+        <input type="text" name="info[comeform]" class="ins ml10" placeholder="来源" />
+    </div>
+    <div class="form_items">
+        <label class="items">简介：</label>
+        <textarea id="id_content" name="info[description]" class="ins txt"></textarea>
+        <p>还可以输入 <span id="max_words" class="fred">70</span> 字符</p>
+    </div>
+    <div class="form_items">
+        <label class="items">内容：</label>
+        <script id="content" type="text/plain" style="width:560px;height:150px;"></script>
+    </div>
+    <div class="form_items pl80">
+        <input type="hidden" id="face_url" name="info[face_url]" />
+        <button id="id_save_btn" type="submit" class="icons btns" locked-msg="提交中...">保 存</button>
+    </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    var component = ["cptFmFun"];
+</script>

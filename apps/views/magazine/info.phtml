@@ -1,0 +1,51 @@
+<!--Main{-->
+<div class="wrap main">
+    <div class="mleft fl mw660">
+        <div class="show_box">
+            <div class="local">
+                当前位置：
+                <a class="mlt5" href="<?php echo $this->url->get('magazine'); ?>"><?php echo Lang::tip('TMagazine'); ?></a>&gt;
+                <a class="mlt5" href="<?php echo $this->url->get('magazine_' . $zine->category_id); ?>"><?php echo $zine->category_name; ?></a>&gt;
+                <span class="mlt5">文章正文</span>
+            </div>
+            <div class="show_title">
+                <h2><?php echo $zine->title; ?></h2>
+                <span>发布于：<?php echo $zine->create_time; ?></span>
+                <span class="ml10">阅读：<?php echo $zine->access_times; ?></span>
+                <span class="ml10">来源：<?php echo $zine->comeform; ?></span>
+                <?php if($isLogin): ?>
+                <span class="pos">
+                    <a target="_blank" href="<?php echo $this->url->get('backend/editMagazine/' . $zine->id); ?>">修改</a>
+                </span>
+                <?php endif; ?>
+            </div>
+            <div class="show_content"><?php echo $zine->content; ?></div>
+        </div>
+        <!--showbox-->
+        <div class="prevnext">
+            <span class="fgrey">上一篇：</span>
+            <?php if(!empty($preZine)): ?>
+            <a class="prev" title="<?php echo $preZine->title; ?>" href="<?php echo $this->url->get('magazine@' . $preZine->id); ?>"><?php echo $preZine->title; ?></a>
+            <?php endif; ?>
+  
+            <span class="r">
+                <span class="fgrey">下一篇：</span>
+                <?php if(!empty($nextZine)): ?>
+                <a class="next" title="<?php echo $nextZine->title; ?>" href="<?php echo $this->url->get('magazine@' . $nextZine->id); ?>"><?php echo $nextZine->title; ?></a>
+                <?php endif; ?>
+            </span>
+        </div>
+        <!--上下篇-->
+
+    </div>
+
+    <div class="mright fl mpl">
+        <?php echo $this->partial('common/group'); ?>
+
+        <?php if($isLogin): ?>
+        <a target="_blank" class="fbtn mt20" href="<?php echo $this->url->get('backend/addMagazine'); ?>"><?php echo Lang::tip('TAddMagazine'); ?></a>
+        <?php endif; ?>
+    </div>
+    <br class="clear" />
+</div>
+<!--}Main{-->

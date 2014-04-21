@@ -1,0 +1,38 @@
+<style type="text/css">
+.uploadBox #file_upload-queue { display: block; }
+</style>
+<div class="abox">
+     <div class="prompt"></div>
+    <div class="uploadBox">
+        <form name="uploadForm">
+            <input id="file_upload" name="file_upload" type="file" />
+        </form>
+    </div>
+    <table class="table">
+    <thead>
+        <tr>
+            <th>缩略图</th>
+            <th>简介</th>
+            <th>排序</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody id="photolist" data-tour="<?php echo $curr_tour; ?>">
+        <?php foreach($records as $record): ?>
+        <tr>
+            <td><a target="_blank" href="<?php echo $this->config->url->img, $record->url; ?>"  title="查看大图"><img data-url="<?php echo $record->url; ?>" src="<?php echo $this->config->url->img, $record->url; ?>" width="130" height="87" /></a></td>
+            <td><textarea class="ins ins230" rows="3"><?php echo $record->description; ?></textarea></td>
+            <td><input type="text" class="ins ins50" value="<?php echo $record->sort; ?>"></td>
+            <td data-pk="<?php echo $record->id; ?>">
+                <button class="icons btns savePhoto dpb mt5">保存</button>
+                <button class="icons btns delPhoto dpb mt10">删除</button>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+    </table>
+</div>
+
+<script type="text/javascript">
+    var component = ["cptTourphotoFun"];
+</script>

@@ -1,0 +1,55 @@
+<div class="faceBox">
+    <div class="uploadBox">
+        <form name="uploadForm">
+            <input id="file_upload" name="file_upload" type="file" />
+        </form>
+    </div>
+    <div class="ImgBox">
+        <img id="preview" src="<?php echo $user->face; ?>" width="100" height="100" />
+    </div>
+    <button id="jcropBtn" class="icons btns" data-url="" title="裁剪图片">裁 剪</button>
+</div>
+
+<div class="abox">
+    <div class="prompt"></div>
+    <form id="id_info_form" action="<?php echo $this->url->get('account/saveUserInfo'); ?>" method="post" onsubmit="return false;">
+    <div class="form_items">
+        <label class="items">账号：</label>
+        <span><?php echo $user->account; ?></span>
+    </div>
+    <div class="form_items">
+        <label class="items">昵称：</label>
+        <input id="id_nickname" type="text" name="info[nickname]" class="ins" maxlength="20" value="<?php echo $user->nickname; ?>" nullmsg="请输入昵称。" />
+        <em id="id_nickname_msg"></em>
+    </div>
+    <div class="form_items">
+        <label class="items">性别：</label>
+        <input id="id_male" type="radio" name="info[gender]" value="M" <?php if($user->gender=='M'): ?>checked="checked"<?php endif; ?> />&nbsp;
+        <label for="id_male">男</label> &nbsp;
+        <input id="id_female" type="radio" name="info[gender]" value="F" <?php if($user->gender=='F'): ?>checked="checked"<?php endif; ?> />&nbsp;
+        <label for="id_female">女</label>
+    </div>
+    <div class="form_items">
+        <label class="items">生日：</label>
+        <input id="id_birthday" type='text' name="info[birthday]" class="ins" value="<?php echo $user->birthday; ?>" readonly="readonly" nullmsg="请选择生日。" />
+        <em id="id_birthday_msg"></em>
+    </div>
+    <div class="form_items">
+        <label class="items">居住城市：</label>
+        <input id="id_birthday" type='text' name="info[address]" class="ins normal" value="<?php echo $user->address; ?>" />
+    </div>
+    <div class="form_items">
+        <label class="items">自我介绍：</label>
+        <textarea id="id_content" name="info[introduce]" class="ins txt"><?php echo $user->introduce; ?></textarea>
+        <p>还可以输入 <span id="max_words" class="fred">100</span> 字符</p>
+    </div>
+    <div class="form_items pl80">
+        <input type="hidden" id="face_url" name="info[face]" value="<?php echo $user->filename; ?>" />
+        <button id="id_save_btn" type="submit" class="icons btns" locked-msg="提交中...">保 存</button>
+    </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    var component = ["cptSetInfoFun"];
+</script>

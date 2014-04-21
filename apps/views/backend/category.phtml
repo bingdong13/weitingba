@@ -1,0 +1,19 @@
+<div class="abox">
+    <div class="prompt">
+    <?php foreach($channels as $key => $val): ?>
+        <a href="<?php echo $this->url->get('backend/category/' . $key); ?>" class="mr10 <?php echo $key==$curr_cid ? 'fbtn' : '' ?>"><?php echo $val; ?></a>
+    <?php endforeach; ?>
+    </div>
+
+    <h3 class="mb10"><?php //echo $key; ?></h3>
+    <ul id="category" class="record fl">
+    <?php foreach($categorys as $row): ?>
+        <li>
+            <img src="<?php echo $this->config->url->img, $row['face_url']; ?>!50" height="50" width="50" />
+            <p><a href="<?php echo $this->url->get('backend/editCategory/' . $row['id']); ?>" title="点击修改"><?php echo $row['title']; ?></a>（<span><?php echo $row['numbers']; ?></span>）</p>
+            <p><?php echo $row['description']; ?></p>
+        </li>
+    <?php endforeach; ?>
+    </ul>
+    <br class="clear" />
+</div>

@@ -1,0 +1,20 @@
+<!--Main{-->
+<div class="wrap main">
+    <div class="mleft fl">
+        <div class="carelist mt20" id="id_notebookList" cid="<?php echo $curr_category; ?>"></div>
+    </div>
+
+    <div class="mright fl">
+        <?php echo $this->partial('common/group'); ?>
+
+        <div class="rt mt20"><?php echo Lang::tip('TNotebook'); ?>分类</div>
+        <?php echo $this->partial('common/category'); ?>
+    </div>
+    <br class="clear" />
+</div>
+<!--}Main{-->
+
+<script type="text/javascript">
+    var isLogin = "<?php echo intval($isLogin); ?>";
+    var component = ["cptNotebookList"];
+</script>

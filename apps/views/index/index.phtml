@@ -1,0 +1,17 @@
+<?php echo $this->partial('common/changeBg'); ?>
+
+<div class="wrap" bg-url="<?php echo $bg_url; ?>" id="bg">
+    <div class="panel">
+    <?php if( !empty($record) ): ?>
+        <img class="profile" src="<?php echo $this->config->url->img, $record->face_url; ?>!100" width="100" height="100" />
+        <div class="info">
+            <?php echo $record->content; ?>
+            <p class="nick">@<?php echo $record->sign; ?></p>
+        </div>
+    <?php endif; ?>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var component = ["cptIndexFun"];
+</script>

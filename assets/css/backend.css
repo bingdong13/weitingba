@@ -1,0 +1,306 @@
+body{ font:12px/1.5 Arial, Helvetica, sans-serif;color:#111;background:#d8d8d8 }
+
+.icons { background:url(../images/users.png) no-repeat }
+
+.btns, .greyBtn{
+    padding-bottom:2px;
+    padding-bottom:0 \9;
+    width:75px;
+    height:30px;
+    color:#FFF;
+    cursor:pointer;
+    border:none;
+    background-position:0 -40px
+}
+.btns:hover{ background-position:-80px -40px }
+.greyBtn{ color:#777; background-position: -160px -40px }
+.greyBtn:hover{ background-position:-240px -40px }
+.greenBtn {
+    cursor: pointer;
+    border: 0;
+    border-radius: 5px;
+    color: #FFF;
+    background: #45b36b;
+    width: 80px;
+    height: 30px;
+}
+
+.fbtn{
+    display:inline-block;
+    background:#000;
+    border-radius:3px;
+    border:1px solid #000;
+    box-shadow:0 1px 3px rgba(0,0,0,0.05);
+    font:14px/20px '微软雅黑';
+    color: #FFF;
+    width: 60px;
+    height: 25px;
+    line-height: 25px;
+    line-height: 27px\9;
+    text-align: center;
+    text-decoration: none;
+}
+
+.wrap { margin:0 auto; width:960px; position: relative; height:auto; display:block; }
+
+/* header */
+#header {
+    width:100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display:block;
+    height:50px;
+    z-index: 999;
+    background:url(../images/top_bg.jpg) repeat-x;
+}
+#header #logo {
+    position:absolute;
+    left:10px;top:7px;
+    width:123px;
+    height:60px;
+    z-index: 999;
+}
+#header #nav { position:absolute;right:5px;top:15px; color:#FFF; }
+#header #nav a,
+#header #nav a:hover { color:#FFF; }
+#header #nav .m { margin-left: 15px; font: 14px/20px 'Microsoft YaHei','黑体'; color:#cacaca}
+#header #nav .sline { padding: 0 15px; color: #8D7250; }
+
+.footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    _filter: none;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+    background: #1e1e1e;
+    text-align: right;
+}
+.footer .copy {
+    float: left;
+    margin-left: 5px;
+    display: inline;
+    color: #999;
+}
+.footer .copy a { color: #999; }
+.footer .flinks {
+    float: right;
+    margin-right: 5px;
+    display: inline;
+    text-align: right;
+}
+.footer .flinks a {
+    color: #999;
+    margin-right: 5px;
+    margin-left: 5px;
+    line-height: 27px;
+}
+
+.main{
+    background-color:#FFF;
+    margin-top:75px;
+    margin-bottom: 45px;
+    border: 1px rgba(0,0,0,.4) solid;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+    padding: 20px 4px 45px;
+}
+
+.mleft{ width:701px; padding:0 20px; background:#FFF; position: relative; }
+.mright{ padding:0 0 10px 19px; width:195px }
+
+.mleft h2, .mright h2{ font-weight:bold;color:#333;position:relative; margin-left: 20px; }
+.mleft h2 a{position: absolute; top: -10px; right: 10px; font-size: 12px; color: #666;  }
+.mright h2{ margin-left: 10px; margin-top: 20px; }
+.mright .menu{ border-top:1px solid #E4E4E4; margin-top: 5px; padding-right: 5px; }
+.mright .menu li{
+    border-bottom:1px solid #E4E4E4;
+    padding:0 5px 0 26px;
+    height:35px;
+    width:149px;
+    color: #999;
+    font:14px/35px 'Microsoft YaHei'
+}
+.mright .menu li a{ color:#444; margin-right: 5px; }
+.mright .menu li a:hover{ color:#369; text-decoration:none; background-color:#FFF}
+.mright .menu .rz{background-position:-580px -162px}
+.mright .menu .sc{background-position:-580px -282px}
+.mright .menu .qa{background-position:-396px -180px}
+.mright .menu .topic {background-position:-396px -262px}
+.mright .menu .set{background-position:-396px -222px}
+
+.mleft .abox { margin-left: 20px; margin-top: 10px; position: relative; }
+.mleft .abox .prompt {
+    display: block;
+    margin: 5px 0 20px;
+    border-bottom: 1px dashed #DDD;
+    text-align: right;
+    color: #999;
+    padding-bottom: 5px;
+}
+
+.mleft .abox .prompt a.fbtn { color:#fff;}
+
+.mleft .faceBox { 
+    position: absolute;
+    right: 30px;
+    top: 50px;
+    z-index: 98;
+}
+.mleft .faceBox .uploadBox { 
+    position: absolute;
+    left: -22px;
+    top: 20px;
+    z-index: 99;
+    visibility: hidden;
+}
+.mleft .faceBox:hover .uploadBox { visibility: visible; }
+.mleft .faceBox .ImgBox {
+    border: 1px rgba(0,0,0,.4) solid;
+    background-color: white;
+    -webkit-border-radius: 6px;
+    -moz-border-radius: 6px;
+    border-radius: 6px;
+    -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+    -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+    padding: 4px;
+    min-width:80px;
+    min-height:80px;
+    overflow:hidden;
+}
+.mleft .faceBox #jcropBtn{
+    margin-left: 18px;
+    margin-top: 20px;
+    display: none;
+}
+
+.record li {
+    position:relative;
+    padding:0 10px 20px 60px;
+    min-height:50px;
+    _height:50px;
+    line-height:16px
+}
+.record li img { position:absolute; top:0; left:0 }
+.record li p { font:12px/16px 'Microsoft YaHei'; padding-bottom:5px }
+
+#category li { float:left; width:156px; }
+#bgdp li { float:left; width:100px;}
+
+#cache li {
+    float:left;
+    padding-right:10px;
+    padding-bottom: 10px;
+    width:200px;
+    line-height:16px;
+}
+
+.table {
+    background-color: transparent;
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    margin: 10px 0;
+}
+.table th { font-weight: bold; vertical-align: bottom }
+.table th, .table td {
+    padding: 8px;
+    line-height: 20px;
+    text-align: left;
+    vertical-align: top;
+    border-top: 1px solid #ddd;
+}
+.table tbody tr:hover { background-color: #F6F6F6 }
+
+/* 导航条CSS BEGIN */
+.pagination {
+  margin: 20px 0;
+}
+.pagination ul {
+  display: inline-block;
+  *display: inline;
+  margin-bottom: 0;
+  margin-left: 0;
+  -webkit-border-radius: 4px;
+     -moz-border-radius: 4px;
+          border-radius: 4px;
+  *zoom: 1;
+  -webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+     -moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+          box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+.pagination ul > li {
+  display: inline;
+}
+
+.pagination ul > li > a,
+.pagination ul > li > span {
+  float: left;
+  padding: 4px 12px;
+  line-height: 20px;
+  text-decoration: none;
+  background-color: #ffffff;
+  border: 1px solid #dddddd;
+  border-left-width: 0;
+}
+
+.pagination ul > li > a:hover,
+.pagination ul > li > a:focus,
+.pagination ul > .active > a,
+.pagination ul > .active > span {
+  background-color: #f5f5f5;
+}
+
+.pagination ul > .active > a,
+.pagination ul > .active > span {
+  color: #999999;
+  cursor: default;
+}
+
+.pagination ul > .disabled > span,
+.pagination ul > .disabled > a,
+.pagination ul > .disabled > a:hover,
+.pagination ul > .disabled > a:focus {
+  color: #999999;
+  cursor: default;
+  background-color: transparent;
+}
+
+.pagination ul > li:first-child > a,
+.pagination ul > li:first-child > span {
+  border-left-width: 1px;
+  -webkit-border-bottom-left-radius: 4px;
+          border-bottom-left-radius: 4px;
+  -webkit-border-top-left-radius: 4px;
+          border-top-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  -moz-border-radius-topleft: 4px;
+}
+
+.pagination ul > li:last-child > a,
+.pagination ul > li:last-child > span {
+  -webkit-border-top-right-radius: 4px;
+          border-top-right-radius: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+          border-bottom-right-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  -moz-border-radius-bottomright: 4px;
+}
+
+.pagination-centered {
+  text-align: center;
+}
+.pagination-right {
+  text-align: right;
+}
+/* 导航条CSS END */

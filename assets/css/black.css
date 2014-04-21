@@ -1,0 +1,72 @@
+
+body{ 
+    font:12px/1.5 Arial, Helvetica, sans-serif;
+    background: #e5e5e5 url("../images/mooning.jpg");
+    background-size: cover;
+    overflow-x: hidden;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+.icons { background:url(../images/zyx_bgs.png) no-repeat }
+
+.wrap { margin:0 auto; width:960px; position: relative; height:auto; display:block; }
+
+/* header */
+#header {
+    width:100%;
+    position: fixed;
+    left: 0;
+    top: 0;
+    display:block;
+    height:50px;
+    z-index: 999;
+    background:url(../images/top_bg.jpg) repeat-x;
+}
+#header #logo {
+    position:absolute;
+    left:10px;
+    top:7px;
+    width:123px;
+    height:60px;
+    z-index: 999;
+}
+#header #nav { position:absolute;right:5px;top:15px; color:#FFF; }
+#header #nav a,
+#header #nav a:hover { color:#FFF; }
+#header #nav .m { margin-left: 15px; font: 14px/20px 'Microsoft YaHei','黑体'; color:#cacaca}
+#header #nav .sline { padding: 0 15px; color: #8D7250; }
+
+.footer{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    float: left;
+    _filter: none;
+    height: 25px;
+    line-height: 25px;
+    overflow: hidden;
+    background: #1e1e1e;
+    text-align: right;
+}
+.footer .copy {
+    float: left;
+    margin-left: 5px;
+    display: inline;
+    color: #999;
+}
+.footer .copy a { color: #999; }
+.footer .flinks {
+    float: right;
+    margin-right: 5px;
+    display: inline;
+    text-align: right;
+}
+.footer .flinks a {
+    color: #999;
+    margin-right: 5px;
+    margin-left: 5px;
+    line-height: 27px;
+}

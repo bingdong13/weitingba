@@ -1,0 +1,32 @@
+<div class="wrap main">
+    <div class="parea">
+        <div class="pleft fl">
+            <h2>登录<?php echo $this->config->application->title; ?></h2>
+            <div class="ml50">
+            <form id="id_loginForm" method="post" action="<?php echo $this->url->get('passport/doLogin'); ?>" onsubmit="return false;">
+                <div class="mt15">
+                    <label>账号：</label>
+                    <input id="id_username" type="text" class="ins" name="username" tabindex="1" nullmsg="请输入账号。" />
+                    <em id="id_username_msg"></em>
+                </div>
+                <div class="mt15">
+                    <label>密码：</label>
+                    <input id="id_password" type="password" class="ins" name="password" tabindex="2" nullmsg="请输入密码。" />
+                    <em id="id_password_msg"></em>
+                </div>
+                <div class="pbtns">
+                    <input type="hidden" name="<?php echo $this->security->getTokenKey() ?>" value="<?php echo $this->security->getToken() ?>" />
+                    <button id="id_save_btn" type="submit" class="btnIcon btn" tabindex="3" locked-msg="登录中...">立即登录</button>
+                </div>
+            </form>
+            </div>
+        </div>
+
+        <div class="pright fr"></div>
+        <br class="clear" />
+    </div>
+</div>
+
+<script type="text/javascript">
+    var component = ["cptLoginFun"];
+</script>

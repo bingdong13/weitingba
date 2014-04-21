@@ -1,0 +1,49 @@
+<!--Main{-->
+<div class="wrap main">
+    <div class="mleft fl mw660">
+        <div class="show_box">
+            <div class="local">
+                当前位置：
+                <a class="mlt5" href="<?php echo $this->url->get('notebook'); ?>"><?php echo Lang::tip('TNotebook'); ?></a>&gt;
+                <a class="mlt5" href="<?php echo $this->url->get('notebook_' . $note->category_id); ?>"><?php echo $note->category_name; ?></a>&gt;
+                <span class="mlt5">文章正文</span>
+            </div>
+            <div class="show_title">
+                <h2><?php echo $note->title; ?></h2>
+                <span>发布于：<?php echo $note->create_time; ?></span>
+                <span class="ml10">阅读：<?php echo $note->access_times; ?></span>
+                <?php if($isLogin): ?>
+                <span class="pos">
+                    <a target="_blank" href="<?php echo $this->url->get('backend/editNote/' . $note->id); ?>">修改</a>
+                </span>
+                <?php endif; ?>
+            </div>
+            <div class="show_content"><?php echo $note->content; ?></div>
+        </div>
+        <!--showbox-->
+        
+        <div class="prevnext">
+            <span class="fgrey">上一篇：</span>
+            <?php if(!empty($preNote)): ?>
+            <a class="prev" title="<?php echo $preNote->title; ?>" href="<?php echo $this->url->get('magazine@' . $preNote->id); ?>"><?php echo $preNote->title; ?></a>
+            <?php endif; ?>
+  
+            <span class="r">
+                <span class="fgrey">下一篇：</span>
+                <?php if(!empty($nextNote)): ?>
+                <a class="next" title="<?php echo $nextNote->title; ?>" href="<?php echo $this->url->get('magazine@' . $nextNote->id); ?>"><?php echo $nextNote->title; ?></a>
+                <?php endif; ?>
+            </span>
+        </div>
+    </div>
+
+    <div class="mright fl mpl">
+        <?php echo $this->partial('common/group'); ?>
+        
+        <?php if($isLogin): ?>
+        <a target="_blank" class="fbtn mt20" href="<?php echo $this->url->get('backend/addNote'); ?>"><?php echo Lang::tip('TAddNote'); ?></a>
+        <?php endif; ?>
+    </div>
+    <br class="clear" />
+</div>
+<!--}Main{-->

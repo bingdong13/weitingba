@@ -1,0 +1,133 @@
+<link rel="stylesheet" type="text/css" href="<?php echo $this->config->url->assets; ?>/uploadify/jquery.Jcrop.min.css" />
+<style type="text/css">
+    .jcropBox { 
+        position: relative; 
+        display: block; 
+        padding-left:280px;
+        height: 280px;
+        padding-top: 10px;
+    }
+    .jcropBox .boxStyle {
+        border: 1px rgba(0,0,0,.4) solid;
+        background-color: white;
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+        -webkit-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+        -moz-box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+        box-shadow: 1px 1px 5px 2px rgba(0, 0, 0, 0.2);
+        padding: 4px;
+    }
+    .jcropBox .initBox { position: absolute; left: 0; top:10px; }
+    .jcropBox .initImg { width: 250px; height: 250px; overflow: hidden;}
+    .jcropBox .previewBox { margin-top: 5px; margin-bottom: 20px;}
+    .jcropBox .preview { overflow: hidden;}
+</style>
+
+<div class="jcropBox">
+    <div class="boxStyle initBox">
+        <div class="initImg">
+            <img id="target" src="<?php echo $this->config->url->img, $filename; ?>" />
+        </div>
+    </div>
+    
+    <h1 class="ml10">预览效果</h1>
+    <div class="boxStyle previewBox">
+        <div class="preview" <?php echo $cwidth ? 'style="width:'. $cwidth .'px; height:'. $cheight .'px;"' : ''; ?>>
+            <img id="thumbView" src="<?php echo $this->config->url->img, $filename; ?>" />
+        </div>
+    </div>
+
+    <form id="id_saveFaceForm" action="<?php echo $this->url->get('api/crupImage'); ?>" method="post" onsubmit="return false;">
+        <input type="hidden" id="x" name="x" />
+        <input type="hidden" id="y" name="y" />
+        <input type="hidden" id="w" name="w" />
+        <input type="hidden" id="h" name="h" />
+        <input type="hidden" id="cw" name="cw" value="<?php echo $cwidth; ?>" />
+        <input type="hidden" id="ch" name="ch" value="<?php echo $cheight; ?>" />
+        <input type="hidden" name="filename" value="<?php echo $filename; ?>" />
+        <button id="id_saveFaceBtn" type="submit" class="icons btns ml20" locked-msg="提交中...">保 存</button>
+    </form>
+</div>
+
+<script type="text/javascript">
+$(function(){
+    var jcrop_api = null;
+    var $preview = $("#thumbView");
+
+    function initJcrop(){
+        
+        $("#target").Jcrop({
+            allowSelect: true,
+            aspectRatio: 1,
+            onChange: showPreview,
+            onSelect: showPreview,
+            onRelease: hidePreview
+        }, function() {
+            jcrop_api = this;
+            
+            var dim = jcrop_api.getBounds();
+            if(dim[0] < 200 || dim[1] < 200 ){
+                jcrop_api.animateTo([0,0,dim[0],dim[1]]);
+            }else{
+                jcrop_api.animateTo([45,45,100,100]);
+            }
+        });
+    }
+
+    function showPreview(coords) {
+        var cwidth = $('#cw').val();
+        var cheight = $('#ch').val();
+        var bounds = jcrop_api.getBounds();
+        var rx = cwidth / coords.w;
+        var ry = cheight / coords.h;
+
+        $preview.css({
+            width: Math.round(rx * bounds[0]) + 'px',
+            height: Math.round(ry * bounds[1]) + 'px',
+            marginLeft: '-' + Math.round(rx * coords.x) + 'px',
+            marginTop: '-' + Math.round(ry * coords.y) + 'px'
+        });
+
+        $('#x').val(coords.x);
+        $('#y').val(coords.y);
+        $('#w').val(coords.w);
+        $('#h').val(coords.h);
+    }
+
+    function hidePreview() {
+
+        $preview.stop().fadeOut('fast');
+    }
+    
+    initJcrop();
+    
+    $("body").delegate("#id_saveFaceForm", "submit", function() {
+        
+        if (!parseInt($('#w').val())){
+            showError('Please select a crop region then press submit.');
+            return false;
+        }
+
+        var saveBtn = $('#id_saveFaceBtn');
+        saveBtn.locked();
+
+        $.post(this.action, $(this).serialize(), function(resp) {
+            if(resp.code == 100){
+
+                $("#preview").attr("src", resp.url);
+                
+                $("#face_url").val(resp.name);
+                
+                $.fn.delMaskWin();
+            }else{
+                showError(resp.msg);
+                saveBtn.unlock();
+            }
+        });
+
+        return false;
+    });
+
+});
+</script>

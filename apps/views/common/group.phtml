@@ -1,0 +1,15 @@
+<div class="group_box fixed">
+    <div class="group_face">
+        <img src="<?php echo $this->config->url->img, $category['face_url']; ?>!80" width="80" height="80" alt="<?php echo $category['title']; ?>" />
+    </div>
+    <div class="group_descs">
+        <div class="title">
+            <strong class="t"><?php echo $category['title']; ?></strong>
+            <span class="add_group">
+                <span class="add"></span>
+                <span id="cnumber<?php echo $curr_category; ?>"><?php echo $category['numbers']; ?></span>
+            </span>
+        </div>
+        <div class="dshow"><?php echo $category['description']; ?></div>
+    </div>
+</div>

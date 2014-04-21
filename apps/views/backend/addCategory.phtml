@@ -1,0 +1,50 @@
+<div class="faceBox">
+    <div class="uploadBox">
+        <form name="uploadForm">
+            <input id="file_upload" name="file_upload" type="file" />
+        </form>
+    </div>
+    <div class="ImgBox">
+        <img id="preview" src="" width="100" height="100" />
+    </div>
+    <button id="jcropBtn" class="icons btns" data-url="" title="裁剪图片">裁 剪</button>
+</div>
+
+<div class="abox">
+    <div class="prompt"></div>
+
+    <form id="id_categoryForm" method="post" action="<?php echo $this->url->get('backend/saveCategory'); ?>" onsubmit="return false;">
+    <div class="form_items">
+        <label class="items">标题：</label>
+        <input id="id_title" type="text" name="info[title]" class="ins normal" maxlength="20" min="2" max="20" nullmsg="请输入标题。" errormsg="由2到20个字符组成。" />
+        <select id="id_channel" name="info[channel_id]" class="select ml10" nullmsg="请选择所属频道。">
+            <option value="">选择频道</option>
+            <?php foreach($channel as $key => $val): ?>
+            <option value="<?php echo $key; ?>"><?php echo $val; ?></option>
+            <?php endforeach; ?>
+        </select>
+        <em id="id_title_msg"></em>
+    </div>
+    <div class="form_items">
+        <label class="items">关键字：</label>
+        <input type="text" name="info[keywords]" class="ins normal" />
+    </div>
+    <div class="form_items">
+        <label class="items">简介：</label>
+        <textarea id="id_content" name="info[description]" class="ins txt"></textarea>
+        <p>还可以输入 <span id="max_words" class="fred">35</span> 字符</p>
+    </div>
+    <div class="form_items">
+        <label class="items">排序：</label>
+        <input type="text" name="info[sort]" class="ins ins50" value="0" />
+    </div>
+    <div class="form_items pl80">
+        <input type="hidden" id="face_url" name="info[face_url]" />
+        <button id="id_save_btn" type="submit" class="icons btns" locked-msg="提交中...">保 存</button>
+    </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    var component = ["cptCategoryFun"];
+</script>

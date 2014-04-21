@@ -1,0 +1,10 @@
+<?php foreach ($records as $row): ?>
+<div class="citems" data-pk="<?php echo $row['id']; ?>">
+    <img src="<?php echo $this->config->url->img, $row['face_url']; ?>!80" width="80" height="80">
+    <div class="program">
+        <a href="javascript:;"><?php echo $row['title']; ?></a>
+        <p>主播 <?php echo $row['anchor']; ?><span class="ml20">作者 <?php echo $row['comeform']; ?></span></p>
+        <p>播放 <span id="fm<?php echo $row['id']; ?>"><?php echo $row['access_times']; ?> 次</span></p>
+    </div>
+</div>
+<?php endforeach; ?>

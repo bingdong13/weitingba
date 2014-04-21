@@ -1,0 +1,42 @@
+<div class="abox">
+    <div class="prompt"></div>
+    <form id="id_noteForm" method="post" action="<?php echo $this->url->get('backend/saveNote'); ?>" onsubmit="return false;">
+    <div class="form_items">
+        <label class="items">标题：</label>
+        <input id="id_title" type="text" name="info[title]" class="ins normal" maxlength="20" min="4" max="20" nullmsg="请输入标题。" errormsg="由4到20个字符组成。" value="<?php echo $note->title; ?>" />
+        <em id="id_title_msg"></em>
+    </div>
+    <div class="form_items">
+        <label class="items">关键字：</label>
+        <input type="text" name="info[keywords]" class="ins" value="<?php echo $note->keywords; ?>" />
+        <input type="text" name="info[comeform]" class="ins ml10" value="<?php echo $note->comeform; ?>" placeholder="来源" />
+    </div>
+    <div class="form_items">
+        <label class="items">简介：</label>
+        <textarea id="id_content" name="info[description]" class="ins txt"><?php echo $note->description; ?></textarea>
+        <p>还可以输入 <span id="max_words" class="fred">70</span> 字符</p>
+    </div>
+    <div class="form_items">
+        <label class="items">内容：</label>
+        <script id="content" type="text/plain" style="width:560px;height:150px;"><?php echo $note->content; ?></script>
+    </div>
+    <div class="form_items">
+        <label class="items">发布时间：</label>
+        <input type="text" name="info[create_time]" class="ins" value="<?php echo $note->create_time; ?>" />
+        <select name="info[status]" class="select ml20">
+            <option value="1" <?php echo $note->status == 1 ? 'selected="selected"' : ''?>>发布</option>
+            <option value="0" <?php echo $note->status == 0 ? 'selected="selected"' : ''?>>草稿</option>
+        </select>
+    </div>
+    <div class="form_items pl80">
+        <input type="hidden" name="<?php echo $this->security->getTokenKey() ?>" value="<?php echo $this->security->getToken() ?>" />
+        <input type="hidden" name="info[id]" value="<?php echo $note->id; ?>" />
+        <input type="hidden" name="info[category_id]" value="<?php echo $note->category_id; ?>" />
+        <button id="id_save_btn" type="submit" class="icons btns" locked-msg="提交中...">保 存</button>
+    </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    var component = ["cptNoteFun"];
+</script>

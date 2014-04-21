@@ -1,0 +1,36 @@
+<?php if( !empty($record) ): ?>
+
+<?php echo $this->partial('common/changeBg'); ?>
+
+<div class="wrap" id="bg" bg-url="<?php echo $record->bg_url; ?>">
+    <div class="fm_content">
+        <h2 id="fmTitle" data-pk="<?php echo $record->id; ?>"><?php echo $record->title; ?></h2>
+        <div id="fmAbout" class="about">
+            <a href="javascript:;">主播：<span id="anchor"><?php echo $record->anchor; ?></span></a>
+            <a href="javascript:;">作者：<span id="comeform"><?php echo $record->comeform; ?></span></a>
+            <p>
+                <span id="desc"><?php echo $record->description; ?></span>
+                <a id="readAll" href="javascript:;">阅读全文»</a>
+            </p>
+        </div>
+        <audio preload autoplay src="<?php echo $record->voice; ?>"></audio>
+    </div>
+    <div class="ietips">
+        温暖提示：使用IE9以上或谷歌浏览器收听，享受最甜美的声音！
+        <a id="readList" href="javascript:;" class="more">更多节目»</a>
+    </div>
+</div>
+<div class="fm_right" id="menuright">
+    <div class="detailBox">
+        <div id="detail"><?php echo $record->content; ?></div>
+        <div id="broadcasts" data-count="<?php echo $record->total; ?>">
+            <a href="javascript:;" class="getmore" onclick="loadFmList();">点击加载更多</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var component = ["cptFmFun"];
+</script>
+
+<?php endif; ?>

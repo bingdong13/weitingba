@@ -1,0 +1,15 @@
+<p class="pl15"><?php echo $title; ?></p>
+
+<div class="form_items">
+    <label class="items">移动到：</label>
+    <select id="new_category" class="select">
+        <?php foreach($categorys as $row): ?>
+        <?php if($row['id'] == $oldCategory) continue; ?>
+        <option value="<?php echo $row['id']; ?>"><?php echo $row['title']; ?></option>
+        <?php endforeach; ?>
+    </select>
+</div>
+
+<div class="form_items pl80">
+    <button id="id_changeClass_btn" class="icons btns" locked-msg="提交中..." onclick="changeCategory('<?php echo $action; ?>');">保 存</button>
+</div>

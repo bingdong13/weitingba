@@ -1,0 +1,47 @@
+<!--Main{-->
+<div class="wrap main">
+    <div class="mleft fl">
+    <?php if($isLogin): ?>
+        <div class="ins_box">
+            <div class="ins_show" id="care_ins_box">
+                <form id="id_sharedForm" method="post" action="<?php echo $this->url->get('shared/add'); ?>" onsubmit="return false;">
+                <span class="max_ins_word">你还可以输入<span id="max_words">140</span>个字</span>
+                <textarea class="care_ins" id="id_content" name="content"></textarea>
+                <div class="grey_icon icons btns sbtns">发 表</div>
+                <div class="ins_focus">
+                    <div class="focus_txt">
+                        <select name="category" id="id_category" class="select">
+                            <option value="">请选择类别</option>
+                        <?php foreach($categorys as $category): ?>
+                            <option value="<?php echo $category['id']; ?>"><?php echo $category['title']; ?></option>
+                        <?php endforeach; ?>
+                        </select>
+                        <a target="_blank" class="ml10 tal" href="<?php echo $this->url->get('backend/addCategory'); ?>" title="新增类别">新增</a>
+                    </div>
+                    同步到：<input type="checkbox" name="istop" value="1" /> 首页
+                    <input type="hidden" name="<?php echo $this->security->getTokenKey() ?>" value="<?php echo $this->security->getToken() ?>" />
+                    <button id="id_shared_btn" type="submit" class="icons btns ml10" lockedMsg="发表中...">发 表</button>
+                </div>
+                </form>
+            </div>
+        </div>
+        <!--输入框-->
+    <?php endif; ?>
+
+        <div class="carelist facecare mt20" id="id_sharedList" cid="<?php echo $curr_category; ?>"></div>
+    </div>
+
+    <div class="mright fl">
+        <?php echo $this->partial('common/group'); ?>
+
+        <div class="rt mt20"><?php echo Lang::tip('TShared'); ?>分类</div>
+        <?php echo $this->partial('common/category'); ?>
+    </div>
+    <br class="clear" />
+</div>
+<!--}Main{-->
+
+<script type="text/javascript">
+    var isLogin = "<?php echo intval($isLogin); ?>";
+    var component = ["cptSharedList"];
+</script>

@@ -1,0 +1,58 @@
+<h2><?php echo $ptitle; ?></h2>
+<div class="abox">
+    <div class="prompt fred">为了避免遗忘，请您填写真实信息，这将帮助您以后通过回答问题快速找回密码。</div>
+    <form id="id_protect_form" action="<?php echo $this->url->get('account/saveProtection'); ?>" method="post" onsubmit="return false;">
+    <div class="form_items">
+        <label class="items">问题一：</label>
+        <select id="id_ques_1" name="question[]" nullmsg="请选择密保问题。">
+            <option value="">请选择密保问题</option>
+            <?php foreach($question as $key => $val): ?>
+            <option value="<?php echo $key; ?>"><?php echo $val; ?></option>
+            <?php endforeach; ?>
+        </select>
+        <em id="id_ques_1_msg"></em>
+    </div>
+    <div class="form_items">
+        <label class="items">答案：</label>
+        <input type="text" id="id_answer_1" name="answer[]" class="ins normal" nullmsg="请填写相应的答案。" />
+        <em id="id_answer_1_msg"></em>
+    </div>
+    <div class="form_items">
+        <label class="items">问题二：</label>
+        <select id="id_ques_2" name="question[]" nullmsg="请选择密保问题。">
+            <option value="">请选择密保问题</option>
+            <?php foreach($question as $key => $val): ?>
+            <option value="<?php echo $key; ?>"><?php echo $val; ?></option>
+            <?php endforeach; ?>
+        </select>
+        <em id="id_ques_2_msg"></em>
+    </div>
+    <div class="form_items">
+        <label class="items">答案：</label>
+        <input type="text" id="id_answer_2" name="answer[]" class="ins normal" nullmsg="请填写相应的答案。" />
+        <em id="id_answer_2_msg"></em>
+    </div>
+    <div class="form_items">
+        <label class="items">问题三：</label>
+        <select id="id_ques_3" name="question[]" nullmsg="请选择密保问题。">
+            <option value="">请选择密保问题</option>
+            <?php foreach($question as $key => $val): ?>
+            <option value="<?php echo $key; ?>"><?php echo $val; ?></option>
+            <?php endforeach; ?>
+        </select>
+        <em id="id_ques_3_msg"></em>
+    </div>
+    <div class="form_items">
+        <label class="items">答案：</label>
+        <input type="text" id="id_answer_3" name="answer[]" class="ins normal" nullmsg="请填写相应的答案。" />
+        <em id="id_answer_3_msg"></em>
+    </div>
+    <div class="form_items pl80">
+        <input type="hidden" name="<?php echo $this->security->getTokenKey() ?>" value="<?php echo $this->security->getToken() ?>" />
+        <input type="submit" id="id_save_btn" class="icons btns" value="保 存" lockedMsg="提交中..." />
+    </div>
+    </form>
+</div>
+<script type="text/javascript">
+    var component = ["cptSetProtectFun"];
+</script>

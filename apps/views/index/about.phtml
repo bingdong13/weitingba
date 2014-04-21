@@ -1,0 +1,37 @@
+<?php 
+$top = mt_rand(0,500);
+$right = mt_rand(0,500);
+$bottom = mt_rand(0,500);
+$left = mt_rand(0,500);
+?>
+<style type="text/css">
+.siter {width: 450px; position: relative;}
+.siter img {
+    position:absolute;
+    left:15px;
+    top:35px;
+    max-width: 100px;
+    -webkit-transition: 500ms;
+    -moz-transition: 500ms;
+    transition: 500ms;
+    -webkit-box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.7), 0px 0px 30px 8px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.7), 0px 0px 30px 8px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 2px 3px rgba(255, 255, 255, 0.7), 0px 0px 30px 8px rgba(0, 0, 0, 0.25);
+    border-radius: <?php echo $top; ?>px <?php echo $right; ?>px <?php echo $bottom; ?>px <?php echo $left; ?>px;
+}
+.siter .info { padding: 20px 0 20px 165px; line-height: 20px; }
+.siter .info p { padding: 5px 0; font-size: 14px; }
+</style>
+
+<div class="siter">
+    <img alt="<?php echo $siter->nickname; ?>" src="<?php echo $siter->face; ?>" height="100" width="100" />
+    <div class="info">
+        <p>
+            <?php echo $siter->nickname; ?>&nbsp;&nbsp;
+            <?php echo $siter->gender; ?>&nbsp;&nbsp;
+            <?php echo $siter->magic; ?>
+        </p>
+        <p><?php echo $siter->address; ?></p>
+        <p><?php echo $siter->introduce; ?></p>
+    </div>
+</div>

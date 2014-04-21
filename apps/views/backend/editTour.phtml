@@ -1,0 +1,54 @@
+<div class="faceBox">
+    <div class="uploadBox">
+        <form name="uploadForm">
+            <input id="file_upload" name="file_upload" type="file" />
+        </form>
+    </div>
+    <div class="ImgBox">
+        <img id="preview" src="<?php echo $this->config->url->img, $tour->face_url; ?>" width="130" height="87" />
+    </div>
+    <button id="jcropBtn" class="icons btns" data-url="" title="裁剪图片">裁 剪</button>
+</div>
+
+<div class="abox">
+    <div class="prompt"></div>
+    <form id="id_tourForm" method="post" action="<?php echo $this->url->get('backend/saveTour'); ?>" onsubmit="return false;">
+    <div class="form_items">
+        <label class="items">标题：</label>
+        <input id="id_title" type="text" name="info[title]" class="ins normal" maxlength="20" min="2" max="20" nullmsg="请输入标题。" errormsg="由2到20个字符组成。" value="<?php echo $tour->title; ?>" />
+        <select name="info[status]" class="select ml20">
+            <option value="1" <?php echo $tour->status == 1 ? 'selected="selected"' : ''?>>公开</option>
+            <option value="0" <?php echo $tour->status == 0 ? 'selected="selected"' : ''?>>不公开</option>
+        </select>
+        <em id="id_title_msg"></em>
+    </div>
+    <div class="form_items">
+        <label class="items">关键字：</label>
+        <input type="text" name="info[keywords]" class="ins" value="<?php echo $tour->keywords; ?>" />
+        <input type="text" name="info[comeform]" class="ins ml10" value="<?php echo $tour->comeform; ?>" placeholder="来源" />
+    </div>
+    <div class="form_items">
+        <label class="items">简介：</label>
+        <textarea id="id_content" name="info[description]" class="ins txt"><?php echo $tour->description; ?></textarea>
+        <p>还可以输入 <span id="max_words" class="fred">110</span> 字符</p>
+    </div>
+    <div class="form_items">
+        <label class="items">发布时间：</label>
+        <input type="text" name="info[create_time]" class="ins ins130" value="<?php echo $tour->create_time; ?>" />
+    </div>
+    <div class="form_items">
+        <label class="items">排序：</label>
+        <input type="text" name="info[sort]" class="ins ins50" value="<?php echo $tour->sort; ?>" />
+    </div>
+    <div class="form_items pl80">
+        <input type="hidden" id="face_url" name="info[face_url]" value="<?php echo $tour->face_url; ?>" />
+        <input type="hidden" name="info[bg_url]" value="<?php echo $tour->bg_url; ?>" />
+        <input type="hidden" name="info[id]" value="<?php echo $tour->id; ?>" />
+        <button id="id_save_btn" type="submit" class="icons btns" locked-msg="提交中...">保 存</button>
+    </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    var component = ["cptTourFun"];
+</script>

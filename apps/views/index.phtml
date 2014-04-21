@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="created" content="<?php echo date('YmdHis'); ?>">
+    <meta name="keywords" content="<?php echo isset($keywords) ? $keywords : ''; ?>">
+    <meta name="description" content="<?php echo isset($descript) ? $descript : ''; ?>">
+    <link href="<?php echo $this->config->url->assets; ?>/images/favicon.ico" rel="SHORTCUT ICON" />
+    <?php echo $this->tag->getTitle(); ?>
+    
+    <?php $this->assets->outputCss('asset-css') ?>
+</head>
+<body>
+    <div class="mask-bg"></div>
+    <div class="alert-bg"></div>
+    <div id="alert-msg"></div>
+    
+    <!--Header{-->
+    <div id="header">
+        <div class="wrap">
+            <div id="logo">
+                <a href="/"><img src="<?php echo $this->config->url->assets; ?>/images/logo.png" width="123" height="60" alt="<?php echo $this->config->application->title; ?>" /></a>
+            </div>
+            <div id="nav">
+            <?php foreach ($this->config->channel as $row): ?>
+                <a href="<?php echo $row->src; ?>" class="m"><?php echo $row->title; ?></a>
+            <?php endforeach; ?>
+
+                <span class="login">
+                    <span class="sline">|</span>
+                <?php if( $this->userIdentity->isLogin() ): ?>
+                    <a target="_blank" href="<?php echo $this->url->get('account'); ?>"><?php echo $this->userIdentity->getAccount(); ?></a>，
+                    <a href="javascript:;" onclick="logout();">退出</a>
+                <?php else: ?>
+                    <a id="siterinfo" href="javascript:;" data-url="<?php echo $this->url->get('about'); ?>" title="关于我" class="mr10"><?php echo $this->config->application->siter; ?></a>
+                    <a id="userLoginWin" href="javascript:;" data-url="<?php echo $this->url->get('passport/ajaxLogin'); ?>" title="登录">登录</a>
+                <?php endif; ?>
+                </span>
+            </div>
+        </div>
+    </div>
+    <!--}Header-->
+    
+    <?php echo $this->getContent(); ?>
+    
+    <!--footer{-->
+    <div class="footer">
+        <div class="wrap">
+            <div class="copy">
+                &copy;&nbsp;<?php echo date('Y'); ?>&nbsp;All Rights Reserved.&nbsp;
+                <a href="http://www.miibeian.gov.cn/" rel="nofollow" target="_blank">沪ICP备14003131号</a>
+                <span class="ml10">感谢 <a href="https://portal.qiniu.com/signup?code=3lq26u0ccyjbm" target="_blank">七牛</a> 赞助提供云加速服务</span>
+            </div>
+            <br class="clear" />
+       </div>
+    </div>
+    <!--}footer-->
+    <!-- 
+    <div class="floatbox hidden">
+        <a class="floatIncon pmsg" href="javascript:;" onclick="return sendMsg();" title="私信Ta"></a>
+        <a class="floatIncon suggest"></a>
+        <a class="floatIncon servece" title="点击联系我们"></a>
+        <div class="floatIncon weichat">
+            <div class="img">
+                <img src="<//?php echo $this->config->url->assets; ?>/images/quickmark.jpg" width="238" height="238" alt="">
+                <p>扫一扫，加我微信好友哦！</p>
+            </div>
+        </div>
+    </div> -->
+
+    <div id="topbar"><a href="javascript:;" onclick="window.scroll(0, 0)" title="回顶部"></a></div>
+    <?php $this->assets->outputJs('asset-js') ?>
+    <span class="hidden">
+    <script type="text/javascript">
+        var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+        document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3Fb975e8f0cae4691f6a4fe6c31a671c37' type='text/javascript'%3E%3C/script%3E"));
+    </script>
+    </span>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<div class="abox">
+    <div class="prompt"></div>
+    <ul class="record">
+    <?php foreach($records as $record): ?>
+        <li>
+            <img src="<?php echo $this->config->url->img, $record->face_url; ?>!50" height="50" width="50" />
+            <p><?php echo $record->content; ?></p>
+            <p>
+                <span><?php echo $record->sign; ?></span>
+                <span class="ml10"><?php echo $record->create_time; ?></span>
+                <?php if($record->link_url): ?>
+                <span class="ml10"><a href="<?php echo $record->link_url; ?>">详情»</a></span>
+                <?php endif; ?>
+                <span class="ml10"><a href="<?php echo $this->url->get('backend/editBoard/' . $record->id); ?>" title="点击修改">修改</a></span>
+            </p>
+        </li>
+    <?php endforeach; ?>
+    </ul>
+    <div class="pagination pagination-centered"><?php echo $pagenav;?></div>
+</div>
