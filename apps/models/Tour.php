@@ -9,8 +9,8 @@ use \Phalcon\Mvc\Model as PhModel,
 class Tour extends PhModel
 {
     const CACHE_TOUR_LIST_KEY = 'CTour:list:';
-    const CACHE_TOUR_KEY = 'CTour:tour:';
-    const CACHE_TOUR_LAST_KEY = 'CTour:tour:last';
+    const CACHE_TOUR_KEY = 'CTour:single:';
+    const CACHE_TOUR_LAST_KEY = 'CTour:last:';
     const CACHE_TOUR_TIMES_KEY = 'CTour:read:times:';
     
     /**

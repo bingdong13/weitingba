@@ -8,7 +8,7 @@ use \Phalcon\Mvc\Model as PhModel,
  */
 class Billboard extends PhModel
 {
-    const CACHE_BOARD_LAST_KEY = 'CBoard:board:last';
+    const CACHE_BOARD_LAST_KEY = 'CBoard:last';
     
     /**
      * 记录ID

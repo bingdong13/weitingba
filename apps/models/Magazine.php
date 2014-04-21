@@ -9,7 +9,7 @@ use \Phalcon\Mvc\Model as PhModel,
 class Magazine extends PhModel
 {
     const CACHE_ZINE_LIST_KEY = 'CMagazine:list:';
-    const CACHE_ZINE_KEY = 'CMagazine:zine:';
+    const CACHE_ZINE_KEY = 'CMagazine:single:';
     const CACHE_ZINE_TIMES_KEY = 'CMagazine:read:times:';
     
     /**

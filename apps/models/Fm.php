@@ -9,8 +9,8 @@ use \Phalcon\Mvc\Model as PhModel,
 class Fm extends PhModel
 {
     const CACHE_FM_LIST_KEY = 'CFm:list:';
-    const CACHE_FM_KEY = 'CFm:fm:';
-    const CACHE_FM_LAST_KEY = 'CFm:fm:last';
+    const CACHE_FM_KEY = 'CFm:single:';
+    const CACHE_FM_LAST_KEY = 'CFm:last:';
     const CACHE_FM_TIMES_KEY = 'CFm:read:times:';
     
     /**

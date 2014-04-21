@@ -1,4 +1,11 @@
-body{ font:12px/1.5 Arial, Helvetica, sans-serif; }
+body{ 
+    font:12px/1.5 Arial, Helvetica, sans-serif;
+    background: #e5e5e5 url("../images/mooning.jpg");
+    background-size: cover;
+    overflow-x: hidden;
+    -webkit-user-select: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
 
 .wrap { margin: 0 auto; width: 960px; position: relative; }
 
@@ -347,24 +354,22 @@ body:hover .uploadBox { visibility: visible; }
 
 #tour-box{
     position: relative;
-    background: #e2e2e2 url("../images/mooning.jpg");
-    margin: 450px auto 0;
-    padding:60px 0;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    background-size: cover;
+    height: 380px;
+    padding: 60px;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
     border-radius: 0;
 }
 
 .tour {
-    position: absolute;
+    position: relative;
     background: rgba(255, 255, 255, 0.80);
     font: 500 18px/1.8 'Optima', 'Verdana', 'Microsoft Yahei', sans-serif;
     color: #333;
-    padding: 40px 25px 20px;
+    padding: 40px 25px 25px;
     width : 780px;
-    top: -332px;
-    left: 65px;
+    margin: -212px auto 0;
     text-shadow: 1px 1px 2px #FFF;
     border-radius: 6px;
     -webkit-border-radius: 6px;
@@ -421,7 +426,7 @@ body:hover .uploadBox { visibility: visible; }
 }
 
 #tour-main {
-    margin-top: 60px;
+    margin: 60px auto;
     border: 1px solid #a7a7a7;
     background: #fff;
     border-radius: 5px;

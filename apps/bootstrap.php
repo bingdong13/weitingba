@@ -192,12 +192,17 @@ class Bootstrap {
                 'lifetime' => $config->cache->lifetime
             ));
 
-            //Memcached connection settings
-            $cache = new \Phalcon\Cache\Backend\Memcache($frontCache, array(
-                'prefix' => $config->cache->prefix,
-                'host' => 'localhost',
-                'port' => '11211'
-            ));
+            switch($config->cache->type){
+                case 'memcache':
+                    //Memcached connection settings
+                    $options = array('host' => 'localhost', 'port' => '11211');
+                    $cache = new \Phalcon\Cache\Backend\Memcache($frontCache, $options);
+                    break;
+                default:
+                    $backEndOptions = array('cacheDir' => $config->cache->cacheDir);
+                    $cache = new \Phalcon\Cache\Backend\File($frontCache, $backEndOptions);
+                    break;
+            }
 
             return $cache;
         });

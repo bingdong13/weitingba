@@ -325,7 +325,7 @@ function loadUploadify(){
 }
 
 // 换背景组件
-function changeBackdrop() {
+function changeBackdrop($obj) {
 
     $("#file_upload").uploadify({
         "buttonText": "更新背景",
@@ -337,7 +337,12 @@ function changeBackdrop() {
 
             if(resp.code==100){
 
-                $.fillmore({src: resp.url, speed: "fast"});
+                if(typeof $obj == 'undefined'){
+                    $.fillmore({src: resp.url, speed: "fast"});
+                }else{
+                    $obj.css("background-image", 'url('+ resp.url +')');
+                }
+                
                 $("#newBg").val(resp.name);
                 $("#saveBg").show();
 

@@ -9,7 +9,7 @@ use \Phalcon\Mvc\Model as PhModel,
 class NoteBook extends PhModel
 {
     const CACHE_NOTE_LIST_KEY = 'CNotebook:list:';
-    const CACHE_NOTE_KEY = 'CNotebook:note:';
+    const CACHE_NOTE_KEY = 'CNotebook:single:';
     const CACHE_NOTE_TIMES_KEY = 'CNotebook:read:times:';
     
     /**

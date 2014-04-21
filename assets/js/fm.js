@@ -68,11 +68,11 @@ function cptFmFun() {
 
 function cptTourFun(){
     var $tourbox = $("#tour-box");
-    var bgImage = $tourbox.attr("bg-url");
-    $.fillmore({src: bgImage, speed: "fast"});
+    var bgImage = $tourbox.attr("data-url");
+    $tourbox.css("background-image", 'url('+ bgImage +')');
 
     if (isLogin == 1) {
-        changeBackdrop();
+        changeBackdrop($tourbox);
         
         $("#saveBg").on("click", function(e) {
             e.preventDefault();

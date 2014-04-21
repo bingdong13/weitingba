@@ -8,8 +8,7 @@ class TourController extends ControllerBase {
         parent::initialize();
 
         $this->style->addCss('/css/fm.css');
-        $this->script->addJs('/js/fm.js')
-            ->addJs('/js/jquery.fillmore.min.js');
+        $this->script->addJs('/js/fm.js');
     }
 
     public function indexAction() {
@@ -27,6 +26,7 @@ class TourController extends ControllerBase {
             }
 
             $this->tag->prependTitle($record->title);
+            
             $this->view->setVar('keywords', $record->keywords);
             $this->view->setVar('descript', $record->description);
 

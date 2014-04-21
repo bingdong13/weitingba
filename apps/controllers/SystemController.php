@@ -21,7 +21,7 @@ class SystemController extends ControllerBase
     }
 
     public function cacheAction(){
-        $cacheRes = $this->modelsCache->queryKeys( $this->config->cache->prefix );
+        $cacheRes = $this->modelsCache->queryKeys();
 
         $this->view->setVar('ptitle', Lang::tip('TCacheList') );
         $this->view->setVar('record', $cacheRes);
@@ -34,17 +34,14 @@ class SystemController extends ControllerBase
             $this->checkAjax();
 
             $key = trim($this->request->getPost('key'));
-
+            
             if($key){
 
                 $this->modelsCache->delete( $key );
 
             }else{
                 
-                $listCache = $this->modelsCache->queryKeys( $this->config->cache->prefix );
-                foreach($listCache as $val){
-                    $this->modelsCache->delete( $val );
-                }
+                $this->modelsCache->flush();
             }
 
             echo Lang::jsonSuccess('SUpdate');

@@ -51,7 +51,7 @@ $config['database'] = array(
 
 // cache 配置信息
 $config['cache'] = array(
-    'prefix' => 'prod:',
+    'type' => 'memcache', // File; Memcache;
     'lifetime' => 0, // 永久
     'cacheDir' => APP_PATH . '/cache/',
 );
