@@ -1,2 +1,8 @@
-/cache/
-/config/development/
+/uploads/
+/public/develop.php
+/data/sql/
+/data/crontab/
+/data/qiniu/
+/apps/cache/
+/apps/logs/
+/apps/config/config.dev.php
