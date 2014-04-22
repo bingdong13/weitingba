@@ -6,8 +6,22 @@
     <div class="fm_content">
         <h2 id="fmTitle" data-pk="<?php echo $record->id; ?>"><?php echo $record->title; ?></h2>
         <div id="fmAbout" class="about">
+        <?php if($record->ftype == 1): ?>
+            <a href="javascript:;">歌手：<span id="anchor"><?php echo $record->anchor; ?></span></a>
+            <?php if($record->comeform): ?>
+                <a href="javascript:;">作词：<span id="comeform"><?php echo $record->comeform; ?></span></a>
+            <?php endif; ?>
+        <?php elseif($row['ftype'] == 2): ?>
             <a href="javascript:;">主播：<span id="anchor"><?php echo $record->anchor; ?></span></a>
-            <a href="javascript:;">作者：<span id="comeform"><?php echo $record->comeform; ?></span></a>
+            <?php if($record->comeform): ?>
+                <a href="javascript:;">作者：<span id="comeform"><?php echo $record->comeform; ?></span></a>
+            <?php endif; ?>
+        <?php else: ?>
+            <a href="javascript:;">主持人：<span id="anchor"><?php echo $record->anchor; ?></span></a>
+            <?php if($record->comeform): ?>
+                <a href="javascript:;">编导：<span id="comeform"><?php echo $record->comeform; ?></span></a>
+            <?php endif; ?>
+        <?php endif; ?>
             <p>
                 <span id="desc"><?php echo $record->description; ?></span>
                 <a id="readAll" href="javascript:;">阅读全文»</a>

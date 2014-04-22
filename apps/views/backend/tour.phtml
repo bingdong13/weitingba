@@ -6,6 +6,7 @@
             <th>来源</th>
             <th>状态</th>
             <th>发布时间</th>
+            <th>排序</th>
             <th>操作</th>
         </tr>
     </thead>
@@ -16,6 +17,7 @@
             <td><?php echo $record->comeform; ?></td>
             <td><?php echo $record->status ? '公开' : '不公开'; ?></td>
             <td><?php echo $record->create_time; ?></td>
+            <td><?php echo $record->sort; ?></td>
             <td>
                 <a href="<?php echo $this->url->get('backend/tourphoto/' . $record->id); ?>">详情</a>
                 <a href="<?php echo $this->url->get('backend/editTour/' . $record->id); ?>">修改</a>

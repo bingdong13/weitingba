@@ -197,7 +197,7 @@ class Tour extends PhModel
         return self::findFirst(array(
             'status=:status:',
             'bind' => array('status' => 1 ),
-            'order' => 'id DESC',
+            'order' => 'sort,id DESC',
             'cache' => array('key' => self::CACHE_TOUR_LAST_KEY)
         ));
     }

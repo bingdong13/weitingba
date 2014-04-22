@@ -221,7 +221,7 @@ body:hover .uploadBox { visibility: visible; }
 .play-box .time strong { padding-left:5px;}
 .play-box .error-message { 
     position: absolute;
-    left: 140px;
+    left: 190px;
     bottom: 15px;
     color: #f00;
     display: none;
@@ -437,13 +437,8 @@ body:hover .uploadBox { visibility: visible; }
 
 .content .related-posts {
     width: 95.5%;
-    margin: 30px auto 50px;
+    margin: 30px auto;
     text-align: center;
-}
-.content .related-posts>h3 {
-    color: #999;
-    margin: -10px auto 20px;
-    font-size: 20px;
 }
 
 .content .related-box {

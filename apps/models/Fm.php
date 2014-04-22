@@ -13,6 +13,10 @@ class Fm extends PhModel
     const CACHE_FM_LAST_KEY = 'CFm:last:';
     const CACHE_FM_TIMES_KEY = 'CFm:read:times:';
     
+    const FM_TYPE_MUSIC = 1; // 音乐
+    const FM_TYPE_DRAMA = 2; // 广播剧
+    const FM_TYPE_RADIO = 3; // 收音机
+    
     /**
      * 记录ID
      * @Primary
@@ -104,6 +108,22 @@ class Fm extends PhModel
      * @Column(type="integer", nullable=false)
      */
     public $category_id;
+    
+    /**
+     * 所属类型
+     * FM_TYPE_MUSIC = 1;  // 音乐
+     * FM_TYPE_DRAMA = 2;  // 广播剧
+     * FM_TYPE_RADIO = 3; // 收音机
+     * 
+     * @Column(type="integer", nullable=false)
+     */
+    public $ftype;
+    
+    static public $fmType = array(
+        self::FM_TYPE_MUSIC => '音乐',
+        self::FM_TYPE_DRAMA => '广播剧',
+        self::FM_TYPE_RADIO => '收音机'
+    );
 
     protected function beforeSave(){
         $this->update_time = date('Y-m-d H:i:s');

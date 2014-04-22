@@ -28,15 +28,21 @@
     <div class="form_items">
         <label class="items">主播：</label>
         <input id="id_anchor" type="text" name="info[anchor]" class="ins normal" nullmsg="请输入主播/歌手。" />
-        <select name="info[status]" class="select ml10">
-            <option value="0">开播</option>
-            <option value="1">停播</option>
+        <select name="info[ftype]" class="select ml10">
+            <option value="">选择类型</option>
+            <?php foreach($fmType as $key => $val): ?>
+            <option value="<?php echo $key; ?>"><?php echo $val; ?></option>
+            <?php endforeach; ?>
         </select>
         <em id="id_anchor_msg"></em>
     </div>
     <div class="form_items">
         <label class="items">音频url：</label>
         <input id="id_voice" type="text" name="info[voice]" class="ins normal" nullmsg="请输入音频url。" />
+        <select name="info[status]" class="select ml10">
+            <option value="0">开播</option>
+            <option value="1">停播</option>
+        </select>
         <em id="id_voice_msg"></em>
     </div>
     <div class="form_items">

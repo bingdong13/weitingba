@@ -3,7 +3,24 @@
     <img src="<?php echo $this->config->url->img, $row['face_url']; ?>!80" width="80" height="80">
     <div class="program">
         <a href="javascript:;"><?php echo $row['title']; ?></a>
-        <p>主播 <?php echo $row['anchor']; ?><span class="ml20">作者 <?php echo $row['comeform']; ?></span></p>
+        <p>
+        <?php if($row['ftype'] == 1): ?>
+            歌手 <?php echo $row['anchor']; ?>
+            <?php if($row['comeform']): ?>
+                <span class="ml20">作词 <?php echo $row['comeform']; ?></span>
+            <?php endif; ?>
+        <?php elseif($row['ftype'] == 2): ?>
+            主播 <?php echo $row['anchor']; ?>
+            <?php if($row['comeform']): ?>
+                <span class="ml20">作者 <?php echo $row['comeform']; ?></span>
+            <?php endif; ?>
+        <?php else: ?>
+            主持人 <?php echo $row['anchor']; ?>
+            <?php if($row['comeform']): ?>
+                <span class="ml20">编导 <?php echo $row['comeform']; ?></span>
+            <?php endif; ?>
+        <?php endif; ?>
+        </p>
         <p>播放 <span id="fm<?php echo $row['id']; ?>"><?php echo $row['access_times']; ?> 次</span></p>
     </div>
 </div>

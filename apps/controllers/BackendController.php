@@ -160,11 +160,19 @@ class BackendController extends ControllerBase
                 throw new PhException('EParamError');
             }
 
-            $category = new Category();
-            if($category->save($info) === false){
+            
+            if(isset($info['id']) && $info['id'] > 0){
+                $category = Category::findFirst($info['id']);
+                $res = $category->update($info);
+            }else{
+                $category = new Category();
+                $res = $category->create($info);
+            }
+            
+            if( $res === false){
                 throw new PhException('ESystemError');
             }
-
+            
             echo Lang::jsonSuccess('SPublish');
             
         } catch (PhException $e) {
@@ -232,7 +240,7 @@ class BackendController extends ControllerBase
         
         try {
 
-            $this->checkAjaxForm();
+            $this->checkAjax();
 
             $info = $this->request->getPost('info');
             $content = $this->request->getPost('umcontent');
@@ -242,9 +250,16 @@ class BackendController extends ControllerBase
             }
 
             $info['content'] = $content;
-
-            $note = new NoteBook();
-            if($note->save($info) === false){
+            
+            if(isset($info['id']) && $info['id'] > 0){
+                $note = NoteBook::findFirst($info['id']);
+                $res = $note->update($info);
+            }else{
+                $note = new NoteBook();
+                $res = $note->create($info);
+            }
+            
+            if( $res === false){
                 throw new PhException('ESystemError');
             }
 
@@ -330,11 +345,18 @@ class BackendController extends ControllerBase
 
             $info['content'] = $content;
 
-            $zine = new Magazine();
-            if($zine->save($info) === false){
+            if(isset($info['id']) && $info['id'] > 0){
+                $zine = Magazine::findFirst($info['id']);
+                $res = $zine->update($info);
+            }else{
+                $zine = new Magazine();
+                $res = $zine->create($info);
+            }
+            
+            if( $res === false){
                 throw new PhException('ESystemError');
             }
-
+            
             echo Lang::jsonSuccess('SPublish');
             
         } catch (PhException $e) {
@@ -380,6 +402,7 @@ class BackendController extends ControllerBase
         
         $this->view->setVar('ptitle', Lang::tip('TAddFM') );
         $this->view->setVar('categorys', Category::getList( Category::CHANNEL_FM ) );
+        $this->view->setVar('fmType', Fm::$fmType );
     }
 
     public function editFmAction(){
@@ -399,6 +422,7 @@ class BackendController extends ControllerBase
         $this->_initUploadify();
         
         $this->view->setVar('ptitle', Lang::tip('TEditFM') );
+        $this->view->setVar('fmType', Fm::$fmType );
         $this->view->setVar('fm', $fm);
     }
 
@@ -417,8 +441,15 @@ class BackendController extends ControllerBase
 
             $info['content'] = $content;
 
-            $fm = new Fm();
-            if($fm->save($info) === false){
+            if(isset($info['id']) && $info['id'] > 0){
+                $fm = Fm::findFirst($info['id']);
+                $res = $fm->update($info);
+            }else{
+                $fm = new Fm();
+                $res = $fm->create($info);
+            }
+            
+            if( $res === false){
                 throw new PhException('ESystemError');
             }
 
@@ -498,8 +529,15 @@ class BackendController extends ControllerBase
                 throw new PhException('EParamError');
             }
 
-            $tour = new Tour();
-            if($tour->save($info) === false){
+            if(isset($info['id']) && $info['id'] > 0){
+                $tour = Tour::findFirst($info['id']);
+                $res = $tour->update($info);
+            }else{
+                $tour = new Tour();
+                $res = $tour->create($info);
+            }
+            
+            if( $res === false){
                 throw new PhException('ESystemError');
             }
 
@@ -579,7 +617,7 @@ class BackendController extends ControllerBase
             }
 
             $photo = new TourPhoto();
-            if($photo->save($info) === false){
+            if( $photo->save($info) === false){
                 throw new PhException('ESystemError');
             }
 
