@@ -621,7 +621,7 @@ class BackendController extends ControllerBase
                 throw new PhException('ESystemError');
             }
 
-            echo Lang::jsonSuccess('SPublish');
+            echo Lang::jsonSuccess('SPublish', array('pid' => $photo->id));
             
         } catch (PhException $e) {
             

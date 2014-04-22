@@ -42,6 +42,8 @@ class IndexController extends ControllerBase {
     }
 
     public function fmAction() {
+
+        $this->tag->prependTitle($this->config->channel->fm->title);
         
         $fm = new Fm();
         $record = $fm->getLast();
@@ -56,13 +58,8 @@ class IndexController extends ControllerBase {
                 $record->bg_url = $this->config->url->img . $record->bg_url;
             }
 
-            $this->tag->prependTitle($record->title);
-
             $this->view->setVar('keywords', $record->keywords);
             $this->view->setVar('descript', $record->description);
-
-        }else{
-            $this->tag->prependTitle(Lang::tip('TTour'));
         }
         
         $this->view->setVar('record', $record);

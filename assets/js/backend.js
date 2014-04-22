@@ -413,7 +413,7 @@ function cptTourphotoFun(){
                     html += '<td><a target="_blank" href="'+ resp.url +'" title="查看大图"><img data-url="'+ resp.name +'" src="'+ resp.url +'" width="130" height="87" /></a></td>';
                     html += '<td><textarea class="ins ins230" rows="3"></textarea></td>';
                     html += '<td><input type="text" class="ins ins50" value="1" /></td>';
-                    html += '<td data-pk="0"><button class="icons btns savePhoto dpb mt5">保存</button><button class="icons btns delPhoto dpb mt10">取消</button></td>';
+                    html += '<td data-pk="0"><button class="icons btns savePhoto dpb mt5" locked-msg="提交中...">保存</button><button class="icons btns delPhoto dpb mt10">取消</button></td>';
                     html += '</tr>';
 
                 $photolist.prepend(html);
@@ -437,14 +437,19 @@ function cptTourphotoFun(){
         var desc = $siblin.children("textarea").val();
         var sort = $siblin.children("input").val();
 
+        $me.locked();
+
         var data = {"pid":pid, "tour":tour, "url":url, "desc":desc, "sort":sort}
         $.post("/backend/saveTourPhoto", data, function(resp) {
             if (resp.code == 100) {
+                $parent.attr("data-pk", resp.ref.pid);
                 showSuccess(resp.msg);
                 $me.siblings(".delPhoto").hide();
             } else {
                 showError(resp.msg);
             }
+
+            $me.unlock();
         });
     });
 
@@ -460,12 +465,14 @@ function cptTourphotoFun(){
         }
 
         if(parseInt(pid) > 0){
+            $me.locked();
             $.post("/backend/delTourPhoto", {"pid":pid}, function(resp) {
                 if (resp.code == 100) {
                     showSuccess(resp.msg);
                     $me.parent().parent().remove();
                 } else {
                     showError(resp.msg);
+                    $me.unlock();
                 }
             });
 

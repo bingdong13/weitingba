@@ -180,12 +180,17 @@ function loadAudio(){
             },
             trackEnded: function() {
                 var $next = $(".cplaying").next();
+                console.log($next);
+                
                 if ($next.length > 0){
+                    console.log($next.first());
                     $next.first().click();
                 }else{
                     var $prev = $(".cplaying").prev();
+                    console.log($prev);
+                    console.log($prev.first());
                     if ($prev.length > 0){
-                        $prev.last().click();
+                        $prev.first().click();
                     }
                 }
             }

@@ -53,7 +53,13 @@ $config['database'] = array(
 $config['cache'] = array(
     'type' => 'memcache', // File; Memcache;
     'lifetime' => 0, // 永久
-    'cacheDir' => APP_PATH . '/cache/',
+    'memcache' => array(
+        'host' => 'localhost',
+        'port' => '11211'
+    ),
+    'file' => array(
+        'path' => APP_PATH . '/cache/'
+    )
 );
 
 // 频道配置信息
