@@ -1,5 +1,5 @@
 <!--Main{-->
-<div class="wrap main">
+<div class="wrap main" id="user_status" admin="<?php echo (int)$isAdmin; ?>">
     <div class="mleft fl">
         <div class="carelist zinecare mt20" id="id_zineList" cid="<?php echo $curr_category; ?>"></div>
     </div>
@@ -7,14 +7,18 @@
     <div class="mright fl">
         <?php echo $this->partial('common/group'); ?>
 
-        <div class="rt mt20"><?php echo Lang::tip('TMagazine'); ?>分类</div>
+        <div class="rt mt20">
+            <?php echo Lang::tip('TMagazine'); ?>分类
+            <span class="more"><a version="1.0" class="qzOpenerDiv" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_likeurl" target="_blank">赞</a></span>
+        </div>
         <?php echo $this->partial('common/category'); ?>
     </div>
     <br class="clear" />
 </div>
 <!--}Main{-->
 
+<script  src="http://qzonestyle.gtimg.cn/qzone/app/qzlike/qzopensl.js#jsdate=20111107&style=2&showcount=1&width=130&height=30" charset="utf-8" defer="defer" ></script>
+
 <script type="text/javascript">
-    var isLogin = "<?php echo ($isLogin); ?>";
     var component = ["cptMagazineList"];
 </script>

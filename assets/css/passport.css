@@ -26,7 +26,7 @@ body{ font:12px/1.5 Arial, Helvetica, sans-serif;color:#111;background:#d8d8d8 }
 #header #nav a,
 #header #nav a:hover { color:#FFF; }
 #header #nav .m { margin-left: 15px; font: 14px/20px 'Microsoft YaHei','黑体'; color:#cacaca}
-#header #nav .sline { padding: 0 15px; color: #8D7250; }
+#header #nav .sline { padding: 0 10px; color: #8D7250; }
 
 .footer{
     width: 100%;

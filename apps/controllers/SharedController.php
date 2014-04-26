@@ -34,7 +34,7 @@ class SharedController extends ControllerBase
 
         $this->view->setVar('curr_category', $cid);
         $this->view->setVar('categorys', $categorys);
-        $this->view->setVar('isLogin', $this->userIdentity->isLogin());
+        $this->view->setVar('isAdmin', $this->userIdentity->isAdmin());
     }
     
     public function loadListAction(){
@@ -54,7 +54,6 @@ class SharedController extends ControllerBase
         }
 
         $this->view->setVar('shareds', $shareds);
-        $this->view->setVar('isLogin', $this->userIdentity->isLogin());
 
         $this->view->partial('shared/shared_partial');
         

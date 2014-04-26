@@ -9,7 +9,7 @@ class MagazineController extends ControllerBase
 
         $this->style->addCss('/css/golden.css');
         $this->script->addJs('/js/shared.js');
-        $this->view->setVar('isLogin', $this->userIdentity->isLogin());
+        $this->view->setVar('isAdmin', $this->userIdentity->isAdmin());
     }
 
     public function indexAction() {

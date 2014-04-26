@@ -1,14 +1,20 @@
+body{ font:12px/1.5 Arial, Helvetica, sans-serif; }
 
-body{ 
-    font:12px/1.5 Arial, Helvetica, sans-serif;
-    background: #e5e5e5 url("../images/mooning.jpg");
-    background-size: cover;
-    overflow-x: hidden;
-    -webkit-user-select: none;
-    -webkit-tap-highlight-color: rgba(0,0,0,0);
+img, #nav a {
+    -moz-transition:all 0.2s ease-in 0s;
+    -o-transition:all 0.2s ease-in 0s;
+    -webkit-transition:all 0.2s ease-in 0s
 }
-
 .icons { background:url(../images/zyx_bgs.png) no-repeat }
+.btns {
+    background-position: -80px -60px;
+    border:none;
+    width:68px;
+    height:28px;
+    line-height:28px;
+    text-align:center;
+    color:#FFF;
+}
 
 .wrap { margin:0 auto; width:960px; position: relative; height:auto; display:block; }
 
@@ -35,38 +41,187 @@ body{
 #header #nav a,
 #header #nav a:hover { color:#FFF; }
 #header #nav .m { margin-left: 15px; font: 14px/20px 'Microsoft YaHei','黑体'; color:#cacaca}
-#header #nav .sline { padding: 0 15px; color: #8D7250; }
+#header #nav .sline { padding: 0 10px; color: #8D7250; }
 
-.footer{
+.footer {
     width: 100%;
     position: fixed;
     bottom: 0;
     left: 0;
     z-index: 1000;
-    float: left;
     _filter: none;
     height: 25px;
     line-height: 25px;
     overflow: hidden;
     background: #1e1e1e;
-    text-align: right;
+    text-align: center;
 }
-.footer .copy {
-    float: left;
-    margin-left: 5px;
+.footer .copy, .footer .copy a {
     display: inline;
     color: #999;
 }
-.footer .copy a { color: #999; }
-.footer .flinks {
-    float: right;
-    margin-right: 5px;
-    display: inline;
+
+/* main body */
+.main { padding: 30px 0; margin-top:55px; }
+.mleft { overflow: hidden; width: 640px }
+.mright { padding-left: 40px; width: 280px }
+
+/** 语录发布框 BEGIB **/
+.ins_box{ display:block; }
+.ins_box h2{ color:#8F653D; font:18px/20px 'Microsoft YaHei'; }
+.ins_box .ins_show{ display:block; padding-top:20px; position:relative; z-index:99 }
+.ins_box .ins_show .max_ins_word{ position:absolute;top:0;right:0;color:#999;display:none }
+.ins_box .ins_show .care_ins{
+    border:1px solid #EDE7CD;
+    overflow:hidden;
+    padding:0 19px;
+    height:48px;
+    line-height:48px;
+    color:#BBB;
+    width:600px;
+    resize:none
+}
+.ins_box .ins_show .care_ins:focus { border:1px solid #E2D3C0; border-top-color:#DAC8B2 }
+.ins_box .ins_show .sbtns {
+    background-position: 0 -60px;
+    color:#999;
+}
+.ins_box .ins_show .grey_icon{
+    position:absolute;
+    right:10px;
+    top:31px;
+    height:35px;
+    width:70px;
+}
+.ins_box .ins_show .ins_focus{
+    display:none;
+    background:#FFFCF2;
+    border:1px solid #EDE7CD;
+    border-top:none;
+    padding:5px 9px;
+    width:620px;
+    color:#AC906C;
     text-align: right;
+    position:relative;
 }
-.footer .flinks a {
-    color: #999;
-    margin-right: 5px;
-    margin-left: 5px;
-    line-height: 27px;
+.ins_box .ins_show .ins_focus .focus_txt{
+    position:absolute;
+    left:10px;
+    top:5px;
 }
+.ins_box .care_ins_focus .max_ins_word { display:block }
+.ins_box .care_ins_focus .care_ins {
+    padding:9px;
+    height:70px;
+    line-height:18px;
+    color:#555;
+    width:620px
+}
+.ins_box .care_ins_focus .grey_icon { display:none }
+.ins_box .care_ins_focus .ins_focus { display:block }
+/** 语录发布框 END **/
+
+.carelist { background:#FFFAF7 }
+.carelist .items{
+    padding-left:65px;
+    padding-bottom:25px;
+    position:relative;
+    z-index:55;
+    width:575px;
+}
+.carelist .items .care_user {
+    position:absolute;
+    text-align:center;
+    width:50px;
+    top:5px;
+    left:0;
+    line-height:16px;
+    word-break:break-all
+}
+.carelist .items .care_user .face{
+    position:relative;
+    padding:3px 0 0 3px;
+    display:block;
+    margin-bottom: 10px;
+}
+.carelist .items .care_user .bgs{
+    position:absolute;
+    overflow:hidden;
+    top:0;
+    left:0;
+    _left:-3px;
+    height:56px;
+    width:60px;
+    cursor:pointer;
+    background-position: -340px -164px
+}
+.carelist .items .care_box{ border-bottom:1px dashed #E0D3C1; width:575px }
+.carelist .items .care_box .desc{ 
+    padding-bottom:10px;
+    min-height:50px;
+    _height:50px;
+    font-size:14px;
+    line-height:26px;
+    word-break:break-all
+}
+.carelist .items .care_tool {
+    position:relative;
+    padding-bottom:5px;
+    padding-left: 10px;
+    color:#999
+}
+.carelist .items .care_tool .pos { position:absolute; top:0; right:0 }
+.carelist .items .care_tool .pos a{ color:#999; margin:0 5px;  }
+.carelist .items .msglist { border-top: 1px solid #EDE7CD; width: 575px;display: none;}
+.carelist .items .msglist .msgform { 
+    padding: 10px 0; 
+    position: relative; 
+    width: 575px; 
+    border-bottom: 1px solid #EDE7CD;
+}
+.carelist .items .msglist .msgform .msgins {
+    border: 1px solid #EDE7CD;
+    height: 28px;
+    line-height: 28px;
+    padding-left: 5px;
+    width: 513px;
+}
+.carelist .items .msglist .msgform .msgbtns {
+    background-color: #AA8E6B;
+    border: 1px solid #A18664;
+    color: #FFF;
+    height: 30px;
+    position: absolute;
+    right: 0;
+    top: 10px;
+    width: 55px;
+    cursor: pointer;
+}
+.carelist .items .msglist dd {
+    padding: 10px 0 10px 40px;
+    position: relative;
+    width: 535px;
+    color: #777;
+}
+.carelist .items .msglist dd img { position: absolute; left: 0; top: 10px; }
+.carelist .items .msglist dd .date { position: absolute; right: 0; top: 10px; color: #999; }
+
+.memlogin { padding-bottom:30px }
+.memlogin .face{
+    height:80px;
+    padding-left:95px;
+    position:relative;
+    width:185px;
+    color:#777;
+    line-height:16px
+}
+.memlogin .face img { position:absolute; top:0; left:0 }
+.memlogin .face p { 
+    padding-top:5px; 
+    width:185px; 
+    height: 20px; 
+    overflow: hidden;
+    white-space: nowrap; 
+    text-overflow: ellipsis;
+}
+.memlogin .introduce{ line-height: 20px; margin: 10px 10px 0;}

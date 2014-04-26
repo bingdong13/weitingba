@@ -80,7 +80,7 @@ function delShared(sid, cid){
 
     $.post("/shared/delete", { "sid": sid }, function(resp) {
         if(resp.code == 100) {
-            $('#id_shared_' + sid).slideUp();
+            $('#id_items_' + sid).slideUp();
 
             $("#ctotal" + cid).decrhtml();
 
@@ -104,7 +104,7 @@ function getSharedList(){
 }
 
 function cptSharedList(){
-    if(isLogin == 1 ){
+    if( $("#user_status").attr("admin") == 1 ){
         setShareIns();
         
         $("#id_sharedList").delegate(".change_class", "click", function(e) {
@@ -115,6 +115,8 @@ function cptSharedList(){
     }
 
     getSharedList();
+
+    loadShareTool("#id_sharedList", ".items");
 }
 
 function delNotebook(nid, cid){
@@ -124,7 +126,7 @@ function delNotebook(nid, cid){
 
     $.post("/notebook/delete", { "nid": nid }, function(resp) {
         if(resp.code == 100) {
-            $('#id_note_' + nid).slideUp();
+            $('#id_items_' + nid).slideUp();
 
             $("#ctotal" + cid).decrhtml();
 
@@ -148,7 +150,7 @@ function getNotebookList(){
 
 function cptNotebookList(){
     
-    if(isLogin == 1 ){
+    if( $("#user_status").attr("admin") == 1 ){
         $("#id_notebookList").delegate(".change_class", "click", function(e) {
             e.preventDefault();
 
@@ -166,7 +168,7 @@ function delMagazine(nid, cid){
 
     $.post("/magazine/delete", { "nid": nid }, function(resp) {
         if(resp.code == 100) {
-            $('#id_zine_' + nid).slideUp();
+            $('#id_items_' + nid).slideUp();
 
             $("#ctotal" + cid).decrhtml();
 
@@ -190,7 +192,7 @@ function getMagazineList(){
 
 function cptMagazineList(){
     
-    if(isLogin == 1 ){
+    if( $("#user_status").attr("admin") == 1 ){
         $("#id_zineList").delegate(".change_class", "click", function(e) {
             e.preventDefault();
 

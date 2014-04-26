@@ -13,10 +13,10 @@ class IndexController extends ControllerBase {
 
     public function indexAction() {
 
-        $isLogin = $this->userIdentity->isLogin();
-        $this->view->setVar('isLogin',$isLogin);
+        $isAdmin = $this->userIdentity->isAdmin();
+        $this->view->setVar('isAdmin', $isAdmin);
 
-        if( $isLogin ){
+        if( $isAdmin ){
             $this->style->addCss('/uploadify/uploadify.css');
             $this->script->addJs('/uploadify/jquery.uploadify.min.js');
         }
@@ -64,16 +64,16 @@ class IndexController extends ControllerBase {
         
         $this->view->setVar('record', $record);
 
-        $isLogin = $this->userIdentity->isLogin();
-        $this->view->setVar('isLogin', $isLogin);
-        
-        $this->script->addJs('/js/jquery.fillmore.min.js')
-                     ->addJs('/audiojs/audio.min.js');
+        $isAdmin = $this->userIdentity->isAdmin();
+        $this->view->setVar('isAdmin', $isAdmin);
 
-        if( $isLogin ){
+        if( $isAdmin ){
             $this->style->addCss('/uploadify/uploadify.css');
             $this->script->addJs('/uploadify/jquery.uploadify.min.js');
         }
+        
+        $this->script->addJs('/js/jquery.fillmore.min.js')
+                     ->addJs('/audiojs/audio.min.js');
     }
     
     public function loadfmAction(){

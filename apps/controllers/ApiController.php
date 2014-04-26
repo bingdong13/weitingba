@@ -5,6 +5,19 @@ use \Phalcon\Mvc\Controller as PhController,
 
 class ApiController extends PhController
 {
+    // ajax请求、带token表单验证，返回json格式数据。
+    protected function checkAjaxForm(){
+        header('Content-Type:application/json;charset=UTF-8');
+
+        if( !$this->request->isAjax() ){
+            throw new PhException('EFormSubmit');
+        }
+
+        if( !$this->security->checkToken() ){
+            throw new PhException('ETokenError');
+        }
+    }
+    
     protected function checkAjax(){
         header('Content-Type:application/json;charset=UTF-8');
         

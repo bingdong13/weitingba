@@ -25,10 +25,7 @@ class BackendController extends ControllerBase
         $this->tag->prependTitle('栏目管理');
     }
 
-    public function indexAction(){
-        $this->view->disable();
-        echo '后台管理';
-    }
+    public function indexAction(){}
     
     public function boardAction(){
 

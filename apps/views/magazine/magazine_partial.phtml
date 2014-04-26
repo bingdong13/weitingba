@@ -1,5 +1,5 @@
 <?php foreach($records as $row): ?>
-<div class="items" id="id_zine_<?php echo $row['id']; ?>">
+<div class="items" id="id_items_<?php echo $row['id']; ?>">
     <div class="care_user">
         <a title="<?php echo $row['title']; ?>" href="<?php echo $this->url->get('magazine@' . $row['id']); ?>" target="_blank"><img alt="<?php echo $row['title']; ?>" src="<?php echo $this->config->url->img, $row['face_url']; ?>!120x80" width="120" height="80" /></a>
     </div>
@@ -9,13 +9,9 @@
         <div class="care_tool">
             <?php echo $row['create_time']; ?>
             <a class="ml5" href="<?php echo $this->url->get('magazine_' . $row['category_id']); ?>"><?php echo $row['category_name']; ?></a>
-            <!--<span class="share_tool">
-                <span class="sline">|</span>
-                <span class="tool_area"></span>
-            </span>-->
             <span class="pos">
                 <a href="<?php echo $this->url->get('magazine@' . $row['id']); ?>" target="_blank">阅读（<?php echo $row['access_times']; ?>）</a>
-            <?php if( $isLogin ): ?>
+            <?php if( $this->userIdentity->isAdmin() ): ?>
                 <a href="<?php echo $this->url->get('backend/editMagazine/' . $row['id']); ?>" target="_blank">修改</a>
                 <a class="change_class" href="javascript:;" data-url="<?php echo $this->url->get('magazine/changeCategory/' . $row['id']); ?>" title="重置分类">移动</a>
                 <a href="javascript:;" onclick="return delMagazine(<?php echo $row['id']; ?>, <?php echo $row['category_id']; ?>);">删除</a>

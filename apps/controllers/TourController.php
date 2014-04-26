@@ -9,6 +9,14 @@ class TourController extends ControllerBase {
 
         $this->style->addCss('/css/fm.css');
         $this->script->addJs('/js/fm.js');
+        
+        $isAdmin = $this->userIdentity->isAdmin();
+        $this->view->setVar('isAdmin', $isAdmin);
+
+        if( $isAdmin ){
+            $this->style->addCss('/uploadify/uploadify.css');
+            $this->script->addJs('/uploadify/jquery.uploadify.min.js');
+        }
     }
 
     public function indexAction() {
@@ -30,7 +38,7 @@ class TourController extends ControllerBase {
             $this->view->setVar('keywords', $record->keywords);
             $this->view->setVar('descript', $record->description);
 
-            $this->view->setVar('ref', $this->url->get('tour@' . $record->id));
+            $this->view->setVar('more', true);
             $this->view->setVar('records', $tour->getList(30, 0));
 
         }else{
@@ -38,14 +46,6 @@ class TourController extends ControllerBase {
         }
 
         $this->view->setVar('record', $record);
-
-        $isLogin = $this->userIdentity->isLogin();
-        $this->view->setVar('isLogin', $isLogin);
-
-        if( $isLogin ){
-            $this->style->addCss('/uploadify/uploadify.css');
-            $this->script->addJs('/uploadify/jquery.uploadify.min.js');
-        }
     }
 
     public function infoAction(){
@@ -64,14 +64,6 @@ class TourController extends ControllerBase {
             return false;
         }
 
-        $isLogin = $this->userIdentity->isLogin();
-        $this->view->setVar('isLogin', $isLogin);
-
-        if( $isLogin ){
-            $this->style->addCss('/uploadify/uploadify.css');
-            $this->script->addJs('/uploadify/jquery.uploadify.min.js');
-        }
-
         $this->tag->prependTitle($record->title);
 
         $record->access_times += $tour->increment( $record->id );
@@ -86,7 +78,6 @@ class TourController extends ControllerBase {
         $this->view->setVar('prev', $tour->getPrevious($record->id));
         $this->view->setVar('next', $tour->getNext($record->id));
         $this->view->setVar('records', TourPhoto::getList($record->id));
-        $this->view->setVar('ref', '#read');
     }
 
 }

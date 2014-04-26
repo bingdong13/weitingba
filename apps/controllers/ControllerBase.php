@@ -1,7 +1,8 @@
 <?php
 
 use \Phalcon\Mvc\Controller as PhController,
-    \Phalcon\Exception as PhException;
+    \Phalcon\Exception as PhException,
+    \Phalcon\Logger\Adapter\File as FileAdapter;
 
 class ControllerBase extends PhController
 {
@@ -106,20 +107,10 @@ class ControllerBase extends PhController
             throw new PhException('EAjaxSubmit');
         }
     }
-    
-    /**
-     * 生成日志信息
-     * 
-     * @param string $msg 日志内容
-     * @param string $filename 日志文件名
-     * @return void
-     */
-    protected function log($msg, $filename='app'){
-        $logsDir = $this->config->application->logsDir;
-        $logfile = $logsDir . $filename .'_'. date('Y_m_d') .'.log';
-        $logger = new \Phalcon\Logger\Adapter\File($logfile);
 
-        $logger->log($msg);
+    protected function log($msg){
+        $logger = new FileAdapter($this->config->log->db);
+        $logger->error( $msg );
     }
 
 }

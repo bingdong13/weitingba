@@ -1,0 +1,123 @@
+server
+{
+        listen       80;
+        set $root_path '/app/www/weitingba/public';
+        root $root_path;
+        server_name www.lvmaohai.cn lvmaohai.cn;
+        index index.php;
+
+        if ($host = "lvmaohai.cn"){
+                rewrite ^/(.*)$ http://www.lvmaohai.cn/$1 permanent;
+        }
+        
+        location / {
+                if (!-e $request_filename) {
+                        rewrite ^/(.*)$ /index.php?_url=/$1 last;
+                        break;
+                }
+        }
+
+        location ~ .*\.(php|php5)?$
+                {
+                        try_files $uri =404;
+                        fastcgi_pass  unix:/tmp/php-cgi.sock;
+                        fastcgi_index index.php;
+                        include fcgi.conf;
+                }
+
+        location /status {
+                stub_status on;
+                access_log   off;
+        }
+
+        location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
+                {
+                        expires      30d;
+                }
+
+        location ~ .*\.(js|css)?$
+                {
+                        expires      12h;
+                }
+
+        location ~ /\.ht {
+                deny all;
+        }
+
+        access_log  /var/log/nginx/access_www.log  access;
+}
+
+server
+{
+        listen       80;
+        set $root_path '/app/www/weitingba/uploads';
+        root $root_path;
+        server_name img.lvmaohai.cn;
+        index index.php;
+        location / {
+                if (!-e $request_filename) {
+                        rewrite ^/([0-9a-zA-Z\.]+)!([0-9]+)$ /index.php?file=$1&width=$2 last;
+                        rewrite ^/([0-9a-zA-Z\.]+)!([0-9]+)x([0-9]+)$ /index.php?file=$1&width=$2&height=$3 last;
+                        break;
+                }
+        }
+
+        location ~ .*\.(php|php5)?$
+                {
+                        try_files $uri =404;
+                        fastcgi_pass  unix:/tmp/php-cgi.sock;
+                        fastcgi_index index.php;
+                        include fcgi.conf;
+                }
+
+        location /status {
+                stub_status on;
+                access_log   off;
+        }
+
+        location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
+                {
+                        expires      30d;
+                }
+
+        location ~ .*\.(js|css)?$
+                {
+                        expires      12h;
+                }
+
+        location ~ /\.ht {
+                deny all;
+        }
+
+        access_log  /var/log/nginx/access_www.log  access;
+}
+
+server
+{
+        listen       80;
+        root '/app/www/weitingba/assets';
+        server_name static.lvmaohai.cn;
+
+        location /status {
+                stub_status on;
+                access_log   off;
+        }
+
+        location ~ .*\.(gif|jpg|jpeg|png|bmp|swf)$
+                {
+                        expires      30d;
+                }
+
+        location ~ .*\.(js|css)?$
+                {
+                        expires      12h;
+                }
+
+        location ~ /\.ht {
+                deny all;
+        }
+
+        access_log  /var/log/nginx/access_static.log  access;
+}
+
+

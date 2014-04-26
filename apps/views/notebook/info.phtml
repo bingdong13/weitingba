@@ -7,12 +7,16 @@
                 <a class="mlt5" href="<?php echo $this->url->get('notebook'); ?>"><?php echo Lang::tip('TNotebook'); ?></a>&gt;
                 <a class="mlt5" href="<?php echo $this->url->get('notebook_' . $note->category_id); ?>"><?php echo $note->category_name; ?></a>&gt;
                 <span class="mlt5">文章正文</span>
+                <span id="qzineShare" class="sharetool"></span>
             </div>
             <div class="show_title">
                 <h2><?php echo $note->title; ?></h2>
                 <span>发布于：<?php echo $note->create_time; ?></span>
                 <span class="ml10">阅读：<?php echo $note->access_times; ?></span>
-                <?php if($isLogin): ?>
+                <?php if($note->comeform): ?>
+                <span class="ml10">来源：<a target="_blank" href="<?php echo $note->form_url; ?>"><?php echo $note->comeform; ?></a></span>
+                <?php endif; ?>
+                <?php if($isAdmin): ?>
                 <span class="pos">
                     <a target="_blank" href="<?php echo $this->url->get('backend/editNote/' . $note->id); ?>">修改</a>
                 </span>
@@ -40,10 +44,31 @@
     <div class="mright fl mpl">
         <?php echo $this->partial('common/group'); ?>
         
-        <?php if($isLogin): ?>
+        <?php if($isAdmin): ?>
         <a target="_blank" class="fbtn mt20" href="<?php echo $this->url->get('backend/addNote'); ?>"><?php echo Lang::tip('TAddNote'); ?></a>
         <?php endif; ?>
     </div>
     <br class="clear" />
 </div>
 <!--}Main{-->
+
+<script type="text/javascript">
+    (function(){
+    var p = {
+        url:location.href,
+        showcount:'1',
+        summary:'<?php echo $note->description; ?>',
+        title:'<?php echo $note->title; ?>',
+        site:'<?php echo $this->config->application->title; ?>',
+        style:'102',
+        width:145,
+        height:30
+    };
+    var s = [];
+    for(var i in p){
+        s.push(i + '=' + encodeURIComponent(p[i]||''));
+    }
+    document.getElementById("qzineShare").innerHTML = ['<a version="1.0" class="qzOpenerDiv" href="http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?',s.join('&'),'" target="_blank">分享</a>'].join('');
+    })();
+</script>
+<script src="http://qzonestyle.gtimg.cn/qzone/app/qzlike/qzopensl.js#jsdate=20111201" charset="utf-8"></script>

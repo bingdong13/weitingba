@@ -16,10 +16,7 @@
             <td><?php echo $record->comeform; ?></td>
             <td><?php echo $record->status ? '发布' : '草稿'; ?></td>
             <td><?php echo $record->create_time; ?></td>
-            <td>
-                <a href="<?php echo $this->url->get('backend/editMagazine/' . $record->id); ?>">修改</a>
-                <a href="javascript:void(0);">删除</a>
-            </td>
+            <td><a href="<?php echo $this->url->get('backend/editMagazine/' . $record->id); ?>">修改</a></td>
         </tr>
         <?php endforeach; ?>
     </tbody>

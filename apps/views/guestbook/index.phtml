@@ -1,0 +1,42 @@
+<!--Main{-->
+<div class="wrap main" id="user_status" login="<?php echo (int)$isLogin; ?>">
+    <div class="mleft fl">
+        <div class="ins_box">
+            <div class="ins_show" id="care_ins_box">
+            <form id="id_messageForm" action="<?php echo $this->url->get('guestbook/add'); ?>" onsubmit="return false;">
+                <span class="max_ins_word">你还可以输入<span id="max_words">140</span>个字</span>
+            <?php if( $isLogin ): ?>
+                <textarea class="care_ins" id="id_content" name="content"></textarea>
+            <?php else: ?>
+                <textarea class="care_ins" id="id_content" name="content" readonly="readonly">请先登录...</textarea>
+            <?php endif; ?>
+                <div class="grey_icon icons btns sbtns">发 言</div>
+                <div class="ins_focus">
+                    <button id="id_save_btn" type="submit" class="icons btns ml10" locked-msg="发布中...">发 言</button>
+                </div>
+            </form>
+            </div>
+        </div>
+        <!--输入框-->
+
+        <div class="carelist mt20" id="id_msglist"></div>
+    </div>
+
+    <div class="mright fl">
+        <div class="memlogin">
+            <div class="face fixed">
+                <img alt="<?php echo $siter->nickname; ?>" src="<?php echo $siter->face; ?>!80" height="80" width="80" />
+                <p class="nick"><?php echo $siter->nickname; ?></p>
+                <p>phper，从事互联网软件开发。</p>
+                <p>上海，浦东新区</p>
+            </div>
+            <div class="introduce">记忆像是倒在掌心的水，不论你摊开还是紧握，最终还是会从指缝中一滴一滴流淌干净。</div>
+        </div>
+    </div>
+    <br class="clear" />
+</div>
+<!--}Main{-->
+
+<script type="text/javascript">
+    var component = ["cptGbookList"];
+</script>

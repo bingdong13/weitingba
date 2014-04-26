@@ -1,14 +1,13 @@
 <?php
 
-class DbListener
+use \Phalcon\Mvc\User\Plugin as PhPlugin,
+    \Phalcon\Logger\Adapter\File as FileAdapter;
+
+class DbListener extends PhPlugin
 {
-    protected $_logger;
 
     public function __construct()
     {
-        $logfile = APP_PATH . '/logs/db_'. date('Y_m_d') .'.log';
-        $this->_logger = new \Phalcon\Logger\Adapter\File($logfile);
-
         $this->_profiler = new \Phalcon\Db\Profiler();
     }
 
@@ -19,7 +18,9 @@ class DbListener
 
     public function afterQuery($event, $connection)
     {
-        $this->_logger->log($connection->getSQLStatement(), \Phalcon\Logger::INFO);
+        $logger = new FileAdapter($this->config->log->db);
+        $logger->info($connection->getSQLStatement());
+        
         $this->_profiler->stopProfile();
     }
 

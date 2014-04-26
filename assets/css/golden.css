@@ -33,7 +33,7 @@ img, #nav a, #category a {
 #header #nav a,
 #header #nav a:hover { color:#FFF; }
 #header #nav .m { margin-left: 15px; font: 14px/20px 'Microsoft YaHei','黑体'; color: #E9D7BF;}
-#header #nav .sline { padding: 0 15px; color: #8D7250; }
+#header #nav .sline { padding: 0 10px; color: #8D7250; }
     
 /* footer */
 .footer{
@@ -110,6 +110,7 @@ img, #nav a, #category a {
     position: relative;
 }
 .show_box .local a:active { color: #999; }
+.show_box .local .sharetool { position:absolute; top:-5px; right:0 }
 .show_box .show_title {
     color: #999;
     position: relative;
@@ -127,6 +128,7 @@ img, #nav a, #category a {
 .show_box .show_title .pos { position:absolute; top:26px; right:0 }
 .show_box .show_title .sline { margin: 0 8px; color: #CCC; }
 .show_box .show_content { padding-top: 25px; font-size: 14px; line-height: 26px; }
+.show_box .show_content p { margin-bottom: 20px; }
 
 .prevnext { border-bottom: 1px dashed #BBB; padding: 20px 0; position: relative; }
 .prevnext .r { position: absolute; right: 0; top: 20px; }

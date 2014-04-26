@@ -3,7 +3,8 @@
 /**
  * Bootstraps the application
  */
-use \Phalcon\Exception as PhException;
+use \Phalcon\Exception as PhException,
+    \Phalcon\Logger\Adapter\File as FileAdapter;
 
 class Bootstrap {
 
@@ -46,12 +47,14 @@ class Bootstrap {
 
     // Runs the application performing all initializations
     static public function run() {
+        
+        $config = self::$_di->getShared('config');
+        
         try {
             
             // auto loader service component
             $services = array('session', 'cookie', 'url', 'router', 'mysqlDb', 'viewCache', 'modelCache','metadata', 'dispatcher');
-            
-            $config = self::$_di->getShared('config');
+
             foreach ($services as $service) {
                 $function = 'init' . ucfirst($service);
 
@@ -63,6 +66,9 @@ class Bootstrap {
             echo $application->handle()->getContent();
 
         } catch (PhException $e) {
+            
+            $logger = new FileAdapter($config->log->app);
+            $logger->error( $e->getMessage() );
 
             header("Location: /error/show503");
             exit;
@@ -195,14 +201,11 @@ class Bootstrap {
             switch($config->cache->type){
                 case 'memcache':
                     //Memcached connection settings
-                    $options = array(
-                        'host' => $config->cache->memcache->host,
-                        'port' => $config->cache->memcache->port
-                    );
+                    $options = array('host' => 'localhost', 'port' => '11211');
                     $cache = new \Phalcon\Cache\Backend\Memcache($frontCache, $options);
                     break;
                 default:
-                    $backEndOptions = array('cacheDir' => $config->cache->file->path);
+                    $backEndOptions = array('cacheDir' => $config->cache->cacheDir);
                     $cache = new \Phalcon\Cache\Backend\File($frontCache, $backEndOptions);
                     break;
             }

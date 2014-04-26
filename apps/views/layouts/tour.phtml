@@ -6,10 +6,15 @@
 
 <div class="wrap"> 
     <div class="tour tac">
-        <a href="<?php echo $this->url->get('tour@' . $record->id); ?>"><img class="profile" src="<?php echo $this->config->url->img, $record->face_url; ?>!130x87" width="130" height="87" /></a>
-        <h1 class="entry-title"><a title="<?php echo $record->title; ?>" href="<?php echo $this->url->get('tour@' . $record->id); ?>"><?php echo $record->title; ?></a></h1>
+        <img class="profile" src="<?php echo $this->config->url->img, $record->face_url; ?>!130x87" width="130" height="87" />
+        <h1 class="entry-title"><?php echo $record->title; ?></h1>
         <div class="entry-desc">
-            <p><?php echo $record->description; ?></p>
+            <p>
+                <?php echo $record->description; ?>
+            <?php if(isset($more)): ?>
+                <a href="<?php echo $this->url->get('tour@' . $record->id); ?>">详情 »</a>
+            <?php endif; ?>
+            </p>
         </div>
     </div>
     <div id="tour-main">

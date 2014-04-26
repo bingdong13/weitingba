@@ -1,0 +1,42 @@
+<?php foreach($records as $record): ?>
+<div class="items" id="id_items_<?php echo $record['id']; ?>">
+    <div class="care_user">
+        <span class="face">
+            <span class="icons bgs"></span>
+            <img alt="<?php echo $record['nickname']; ?>" src="<?php echo $this->config->url->img, $record['face']; ?>!50" height="50" width="50">
+        </span>
+        <p><?php echo $record['nickname']; ?></p>
+    </div>
+    <div class="care_box">
+        <div class="desc"><?php echo $record['content']; ?></div>
+        <div class="care_tool">
+            <?php echo $record['create_time']; ?>
+            <span class="pos">
+            <?php if( $record['reply_times'] > 0 || $this->userIdentity->isLogin() ): ?>
+                <a onclick="replyBox(<?php echo $record['id']; ?>);" href="javascript:;">回复(<span id="id_replytimes_<?php echo $record['id']; ?>"><?php echo $record['reply_times']; ?></span>)</a>
+            <?php else: ?>
+                <a href="javascript:;">回复(<?php echo $record['reply_times']; ?>)</a>
+            <?php endif; ?>
+            <?php if( $this->userIdentity->isAdmin() || $this->userIdentity->getUin() == $record['uin'] ): ?>
+                <a href="javascript:;" onclick="return delGuestbook(<?php echo $record['id']; ?>);">删除</a>
+            <?php endif; ?>
+            </span>
+        </div>
+        <div class="msglist">
+        <?php if( $this->userIdentity->isLogin() ): ?>
+            <div class="msgform">
+                <form onsubmit="return addGbookReply(this);">
+                    <input type="text" name="content" maxlength="140" class="msgins" />
+                    <input type="hidden" name="pid" value="<?php echo $record['id']; ?>" />
+                    <input type="submit" class="msgbtns" value="回复" />
+                </form>
+            </div>
+        <?php endif; ?>
+            <dl id="id_gbookReply_<?php echo $record['id']; ?>"></dl>
+            <p class="tar mr10">
+                <a href="javascript:;" onclick="upCommentBox(this);">收起</a>
+            </p>
+        </div>
+    </div>
+</div>
+<?php endforeach; ?>

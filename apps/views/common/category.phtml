@@ -5,7 +5,7 @@
         <p class="nick">
             <a href="<?php echo $this->url->get($this->dispatcher->getControllerName() . '_' . $row['id']); ?>"><?php echo $row['title']; ?></a>
             （<span id="ctotal<?php echo $row['id']; ?>"><?php echo $row['numbers']; ?></span>）
-        <?php if($isLogin): ?>
+        <?php if($isAdmin): ?>
             <a class="rtxt" target="_blank" href="<?php echo $this->url->get('backend/editCategory/' . $row['id']); ?>">修改</a>
         <?php endif; ?>
         </p>

@@ -21,11 +21,15 @@ return array(
     'TEditTour' => '编辑旅游主题',
     'TCacheList' => 'cache清单',
     'TBackdrop' => '背景墙',
+    'TMember' => '会员信息',
     'TFm' => 'FM',
     'TShared' => '语录',
     'TNotebook' => '笔记',
     'TMagazine' => '杂志',
     'TTour' => '旅游',
+    'TGuestbook' => '留言板',
+    'TAdd' => '新增',
+    'TPublish' => '发布',
     
     // success
     'SLogin' => '登录成功。',
@@ -40,6 +44,7 @@ return array(
     'EFormSubmit' => '表单提交错误，请重新刷新页面。',
     'EAjaxSubmit' => '数据提交方式错误，请重新刷新页面。',
     'EParamError' => '参数错误，请确认。',
+    'EQQRegError' => 'QQ信息更新失败。',
     
     'EAccountIsEmpty' => '请输入账号。',
     'EUserNotExist' => '账号不存在。',

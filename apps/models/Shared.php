@@ -44,25 +44,27 @@ class Shared extends PhModel
     public $is_top=0;
     
     protected function afterCreate(){
-        $this->deleteListCache();
 
         // 更新分类的条目数
         $category = Category::findFirst( $this->category_id );
         $category->numbers += 1;
         $category->update();
 
+        $this->deleteListCache();
+
         return true;
     }
 
     protected function afterDelete() {
-        $this->deleteListCache();
-
+        
         // 更新分类的条目数
         $category = Category::findFirst( $this->category_id );
         if($category->numbers > 0){
             $category->numbers -= 1;
             $category->update();
         }
+
+        $this->deleteListCache();
 
         return true;
     }

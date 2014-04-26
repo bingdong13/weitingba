@@ -1,109 +1,28 @@
-function saveInfo() {
+function delMember(el){
 
-    if (!$('#id_nickname').checkInput()) {
+    if( !confirm("确定要删除吗？") ){
         return false;
     }
 
-    if (!$('#id_birthday').checkInput()) {
+    var uid = $(el).attr("data-pk");
+
+    if( !uid ){
+        showError("参数错误");
         return false;
     }
 
-    var saveBtn = $('#id_save_btn');
-    saveBtn.locked();
+    showError("参数错误");
 
-    $.post(this.action, $(this).serialize(), function(resp) {
+    $.post("/system/delMember", {"uid":uid}, function(resp) {
         if (resp.code == 100) {
             showSuccess(resp.msg);
+            $(el).parent().parent().slideUp();
         } else {
             showError(resp.msg);
         }
-
-        saveBtn.unlock();
     });
 
     return false;
-}
-
-function cptSetInfoFun() {
-    setInputLen();
-
-    loadUploadify();
-
-    var birthEle = $("#id_birthday");
-    birthEle.datepicker({
-        prevText: '&#x3C;上月',
-        nextText: '下月&#x3E;',
-        monthNamesShort: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-        dayNames: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
-        dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
-        showMonthAfterYear: true,
-        dateFormat: "yy-mm-dd",
-        firstDay: 1,
-        changeMonth: true,
-        changeYear: true,
-        maxDate: "-10y",
-        defaultDate: "-20y"
-    });
-
-    $("#id_nickname").blur(function() {
-        $(this).checkInput();
-    });
-
-    birthEle.blur(function() {
-        $(this).checkInput();
-    });
-
-    $('#id_info_form').submit(saveInfo);
-}
-
-function savePassword() {
-
-    if (!$('#id_oldPasswd').checkInput()) {
-        return false;
-    }
-
-    if (!$('#id_newPasswd').checkInput()) {
-        return false;
-    }
-
-    if (!$('#id_cfmPasswd').checkInput()) {
-        return false;
-    }
-
-    var saveBtn = $('#id_save_btn');
-    saveBtn.locked();
-
-    $.post(this.action, $(this).serialize(), function(resp) {
-        if (resp.code == 100) {
-            $('#id_oldPasswd').val('');
-            $('#id_newPasswd').val('');
-            $('#id_cfmPasswd').val('');
-            showSuccess(resp.msg);
-        } else {
-            showError(resp.msg);
-        }
-
-        saveBtn.unlock();
-    });
-
-    return false;
-}
-
-function cptSetPasswdFun() {
-
-    $("#id_oldPasswd").blur(function() {
-        $(this).checkInput();
-    });
-
-    $("#id_newPasswd").blur(function() {
-        $(this).checkInput();
-    });
-
-    $("#id_cfmPasswd").blur(function() {
-        $(this).checkInput();
-    });
-
-    $('#id_password_form').submit(savePassword);
 }
 
 function cptCategoryFun() {

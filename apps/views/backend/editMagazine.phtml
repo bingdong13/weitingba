@@ -20,13 +20,17 @@
     </div>
     <div class="form_items">
         <label class="items">关键字：</label>
-        <input type="text" name="info[keywords]" class="ins" value="<?php echo $zine->keywords; ?>" />
-        <input type="text" name="info[comeform]" class="ins ml10" value="<?php echo $zine->comeform; ?>" placeholder="来源" />
+        <input type="text" name="info[keywords]" class="ins normal" value="<?php echo $zine->keywords; ?>" />
     </div>
     <div class="form_items">
         <label class="items">简介：</label>
         <textarea id="id_content" name="info[description]" class="ins txt"><?php echo $zine->description; ?></textarea>
         <p>还可以输入 <span id="max_words" class="fred">70</span> 字符</p>
+    </div>
+    <div class="form_items">
+        <label class="items">来源：</label>
+        <input type="text" name="info[comeform]" class="ins ins130" value="<?php echo $zine->comeform; ?>" />
+        <input type="text" name="info[form_url]" class="ins ml10 normal" value="<?php echo $zine->form_url; ?>" placeholder="来源url" />
     </div>
     <div class="form_items">
         <label class="items">内容：</label>
@@ -47,7 +51,6 @@
     </div>
     </form>
 </div>
-
 <script type="text/javascript">
     var component = ["cptMagazineFun"];
 </script>

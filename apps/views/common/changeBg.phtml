@@ -1,4 +1,4 @@
-<?php if($isLogin): ?>
+<?php if($isAdmin): ?>
 <div class="uploadBox">
     <form name="uploadForm">
         <input id="file_upload" name="file_upload" type="file" />
@@ -8,7 +8,3 @@
     <button id="saveBg" class="btnIcon smallbtn ml20 hidden">保 存</button>
 </div>
 <?php endif; ?>
-
-<script type="text/javascript">
-    var isLogin = "<?php echo intval($isLogin); ?>";
-</script>

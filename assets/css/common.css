@@ -59,6 +59,7 @@ a:active { color: #369; text-decoration: none }
 .fgrey { color: #999 }
 .hidden { display: none }
 
+.tal { text-align: left; }
 .tac { text-align: center }
 .tar { text-align: right }
 .dib { display: inline-block;}
@@ -277,6 +278,8 @@ a:active { color: #369; text-decoration: none }
     border-radius: 6px;
     _vertical-align: -2px;
 }
+.normal { width: 260px; }
+.ins300 { width: 300px; }
 .ins230 { width: 230px;}
 .ins130 { width: 130px;}
 .ins50 { width: 50px;}
@@ -333,7 +336,6 @@ a:active { color: #369; text-decoration: none }
     font: 14px/20px 'Microsoft YaHei','黑体';
 }
 .form_items .txt { width: 400px; height: 80px; }
-.form_items .normal { width: 260px; }
 
 .uploadBox { margin: 20px 35px; position: relative; display: block; text-align: center; }
 .uploadBox .uploadTip { margin: 10px auto; color:#fff; }

@@ -57,6 +57,12 @@ class Magazine extends PhModel
     public $comeform;
 
     /**
+     * 来源url
+     * @Column(type="string", length=255, nullable=true)
+     */
+    public $form_url;
+
+    /**
      * 发布时间
      * @Column(type="string", nullable=true)
      */
@@ -91,12 +97,13 @@ class Magazine extends PhModel
     }
     
     protected function afterCreate(){
-        $this->deleteListCache();
 
         // 更新分类的条目数
         $category = Category::findFirst( $this->category_id );
         $category->numbers += 1;
         $category->update();
+
+        $this->deleteListCache();
 
         return true;
     }
@@ -108,7 +115,6 @@ class Magazine extends PhModel
     }
 
     protected function afterDelete() {
-        $this->deleteListCache();
 
         // 更新分类的条目数
         $category = Category::findFirst( $this->category_id );
@@ -116,6 +122,8 @@ class Magazine extends PhModel
             $category->numbers -= 1;
             $category->update();
         }
+
+        $this->deleteListCache();
 
         return true;
     }

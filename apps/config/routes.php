@@ -19,6 +19,14 @@ return array(
         'name' => 'cap-redirect',
     ),
     
+    '/:controller' => array(
+        'params' => array(
+            'controller' => 1,
+            'action' => 'index'
+        ),
+        'name' => 'cap-index',
+    ),
+    
     '/jcrop_([0-9a-zA-z\.]+)_([0-9]+)_([0-9]+)' => array(
         'params' => array(
             'controller' => 'api',
@@ -124,13 +132,5 @@ return array(
             'action' => 'fm'
         ),
         'name' => 'fm-index',
-    ),
-
-    '/about' => array(
-        'params' => array(
-            'controller' => 'index',
-            'action' => 'about'
-        ),
-        'name' => 'index-about',
-    ),
+    )
 );

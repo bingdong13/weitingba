@@ -9,9 +9,7 @@ use \Phalcon\Mvc\Model as PhModel,
 class Backdrop extends PhModel
 {
     const SITE_HOME = 1; // 首页
-    const SITE_TOUR = 2; //旅游
 
-    const CACHE_BACKDROP_KEY = 'CBackdrop:';
     const CACHE_BACKDROP_SITE_KEY = 'CBackdrop:site:';
     
     /**
@@ -53,15 +51,10 @@ class Backdrop extends PhModel
 
         $cache = $this->getDI()->getModelsCache();
   
-        $cache->delete( self::CACHE_BACKDROP_KEY . $this->id );
+        $cache->delete( self::CACHE_BACKDROP_SITE_KEY . $this->site );
 
         return true;
     }
-
-    static public $sites = array(
-        self::SITE_HOME => '首页',
-        self::SITE_TOUR => '旅游'
-    );
 
     public function initialize() {}
 

@@ -1,0 +1,27 @@
+<div class="abox">
+    <table class="table">
+    <thead>
+        <tr>
+            <th>账号</th>
+            <th>昵称</th>
+            <th>角色</th>
+            <th>来源</th>
+            <th>注册日期</th>
+            <th>操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($records as $record): ?>
+        <tr>
+            <td><?php echo $record->account; ?></td>
+            <td><?php echo $record->nickname; ?></td>
+            <td><?php echo $record->role == UserAccount::USER_ROLE_ADMIN ? '管理员' : '会员'; ?></td>
+            <td><?php echo $record->ctype == UserAccount::USER_TYPE_QQ ? 'qq' : '本站'; ?></td>
+            <td><?php echo $record->create_time; ?></td>
+            <td><a data-pk="<?php echo $record->uin?>" href="javascript:;" onclick="delMember(this)";>删除</a></td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+    </table>
+    <div class="pagination pagination-centered"><?php echo $pagenav;?></div>
+</div>

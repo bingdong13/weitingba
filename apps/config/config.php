@@ -20,22 +20,6 @@ $config['url'] = array(
     'img' => 'http://img-wtb.qiniudn.com/',
 );
 
-// 应用配置信息
-$config['application'] = array(
-    'title' => '微听吧',
-    'baseUri' => '/',
-    
-    'controllersDir' => APP_PATH . '/controllers/',
-    'viewsDir'       => APP_PATH . '/views/',
-    'modelsDir'      => APP_PATH . '/models/',
-    'pluginsDir'     => APP_PATH . '/plugins/',
-    'libraryDir'     => APP_PATH . '/library/',
-    'logsDir'        => APP_PATH . '/logs/',
-    'uploadDir'      => realpath(APP_PATH . '/../uploads/'),
-
-    'siter' => 'bigo'
-);
-
 // 自定义类
 $config['uclass'] = array('UserIdentity');
 
@@ -53,44 +37,76 @@ $config['database'] = array(
 $config['cache'] = array(
     'type' => 'memcache', // File; Memcache;
     'lifetime' => 0, // 永久
-    'memcache' => array(
-        'host' => 'localhost',
-        'port' => '11211'
-    ),
-    'file' => array(
-        'path' => APP_PATH . '/cache/'
-    )
+    'cacheDir' => APP_PATH . '/cache/',
+);
+
+//logger 配置信息
+$date = date('Ymd');
+$config['log'] = array(
+    'app' => APP_PATH . "/logs/app_{$date}.log",
+    'db'  => APP_PATH . "/logs/db_{$date}.log"
+);
+
+// 应用配置信息
+$config['application'] = array(
+    'title' => '微听吧',
+    'baseUri' => '/',
+    
+    'controllersDir' => APP_PATH . '/controllers/',
+    'viewsDir'       => APP_PATH . '/views/',
+    'modelsDir'      => APP_PATH . '/models/',
+    'pluginsDir'     => APP_PATH . '/plugins/',
+    'libraryDir'     => APP_PATH . '/library/',
+    'uploadDir'      => realpath(APP_PATH . '/../uploads/')
 );
 
 // 频道配置信息
 $config['channel'] = array(
     'home' => array(
         'title' => '首页',
-        'src' => '/'
+        'src' => '/',
+        'target' => '_self'
     ),
     'shared' => array(
         'title' => '语录', 
         'keywords' => '名言,励志,爱情,影视,唯美,健康,职场,搞笑,语录', 
         'description' => '听君一席话，胜读十年书。', 
         'src' => '/shared',
-        'face_url' =>'shared.jpeg'
+        'face_url' =>'shared.jpeg',
+        'target' => '_self'
     ),
     'notebook' => array(
         'title' => '笔记', 
         'keywords' => 'php,mysql,linux,编程,杂谈,杂症', 
         'description' => '好记性不如烂笔头。', 
         'src' => '/notebook',
-        'face_url' =>'notebook.jpeg'
+        'face_url' =>'notebook.jpeg',
+        'target' => '_self'
     ),
     'magazine' => array(
         'title' => '杂志', 
         'keywords' => '杂乱无章，胸无大志。', 
         'description' => '杂乱无章，胸无大志。', 
         'src' => '/magazine',
-        'face_url' =>'magazine.jpeg'
+        'face_url' =>'magazine.jpeg',
+        'target' => '_self'
     ),
-    'fm' => array('title' => 'FM', 'src' => '/fm'),
-    'tour' => array('title' => '旅游', 'src' => '/tour')
+    'fm' => array(
+        'title' => 'FM', 
+        'src' => '/fm',
+        'target' => '_self'
+    ),
+    'tour' => array(
+        'title' => '旅游', 
+        'src' => '/tour',
+        'target' => '_self'
+    ),
+    'guestbook' => array(
+        'title' => '留言', 
+        'src' => '/guestbook', 
+        'tip' => '给我留言',
+        'target' => '_blank' 
+    )
 );
 
 return $config;

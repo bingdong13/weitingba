@@ -1,55 +1,120 @@
-<div class="faceBox">
-    <div class="uploadBox">
-        <form name="uploadForm">
-            <input id="file_upload" name="file_upload" type="file" />
-        </form>
-    </div>
-    <div class="ImgBox">
-        <img id="preview" src="<?php echo $user->face; ?>" width="100" height="100" />
-    </div>
-    <button id="jcropBtn" class="icons btns" data-url="" title="裁剪图片">裁 剪</button>
-</div>
+<div class="wrap main">
+    <div class="mleft fl">
+        <h2><?php echo Lang::tip('TEditAccount'); ?></h2>
+        <div class="faceBox">
+            <div class="uploadBox">
+                <form name="uploadForm">
+                    <input id="file_upload" name="file_upload" type="file" />
+                </form>
+            </div>
+            <div class="ImgBox">
+                <img id="preview" src="<?php echo $user->face; ?>" width="100" height="100" />
+            </div>
+        </div>
 
-<div class="abox">
-    <div class="prompt"></div>
-    <form id="id_info_form" action="<?php echo $this->url->get('account/saveUserInfo'); ?>" method="post" onsubmit="return false;">
-    <div class="form_items">
-        <label class="items">账号：</label>
-        <span><?php echo $user->account; ?></span>
+        <div class="abox">
+            <div class="prompt"></div>
+        <?php if($isInitialPwd): ?>
+            <p class="fred tal ml20">* 当前密码为初始密码，请您手动更新！</p>
+        <?php endif; ?>
+            <form id="id_info_form" action="<?php echo $this->url->get('account/saveUserInfo'); ?>" method="post" onsubmit="return false;">
+            <div class="form_items">
+                <label class="items">账号：</label>
+                <span><?php echo $user->account; ?></span>
+            </div>
+            <div class="form_items">
+                <label class="items">昵称：</label>
+                <input id="id_nickname" type="text" name="nickname" class="ins" maxlength="20" value="<?php echo $user->nickname; ?>" nullmsg="请输入昵称。" />
+                <em id="id_nickname_msg"></em>
+            </div>
+            <div class="form_items">
+                <label class="items">新密码：</label>
+                <input type="password" id="id_newPasswd" name="new_password" class="ins" maxlength="16" min="0" max="16" errormsg="由4到16个字符组成。" placeholder="新密码" />
+                <em id="id_newPasswd_msg"></em>
+            </div>
+            <div class="form_items">
+                <label class="items">确认密码：</label>
+                <input type="password" id="id_cfmPasswd" name="cfm_password" class="ins" maxlength="16" datatype="recheck" recheck="#id_newPasswd" errormsg="两次密码输入不相同。" />
+                <em id="id_cfmPasswd_msg"></em>
+            </div>
+
+            <div class="form_items pl80">
+                <input type="hidden" id="face_url" name="face" />
+                <button id="id_save_btn" type="submit" class="icons btns" locked-msg="提交中...">保 存</button>
+            </div>
+            </form>
+        </div>
     </div>
-    <div class="form_items">
-        <label class="items">昵称：</label>
-        <input id="id_nickname" type="text" name="info[nickname]" class="ins" maxlength="20" value="<?php echo $user->nickname; ?>" nullmsg="请输入昵称。" />
-        <em id="id_nickname_msg"></em>
+    <div class="mright fl">
+        <h2>个人资料</h2>
+        <ul class="menu">
+            <li class="icons topic">
+                <a href="<?php echo $this->url->get('account'); ?>"><?php echo Lang::tip('TEditAccount'); ?></a>
+            </li>
+            <?php if( $this->userIdentity->isAdmin() ): ?>
+            <li class="icons topic">
+                <a href="<?php echo $this->url->get('backend'); ?>" class="mr10">系统管理</a>
+            </li>
+            <?php endif; ?>
+        </ul>
+
     </div>
-    <div class="form_items">
-        <label class="items">性别：</label>
-        <input id="id_male" type="radio" name="info[gender]" value="M" <?php if($user->gender=='M'): ?>checked="checked"<?php endif; ?> />&nbsp;
-        <label for="id_male">男</label> &nbsp;
-        <input id="id_female" type="radio" name="info[gender]" value="F" <?php if($user->gender=='F'): ?>checked="checked"<?php endif; ?> />&nbsp;
-        <label for="id_female">女</label>
-    </div>
-    <div class="form_items">
-        <label class="items">生日：</label>
-        <input id="id_birthday" type='text' name="info[birthday]" class="ins" value="<?php echo $user->birthday; ?>" readonly="readonly" nullmsg="请选择生日。" />
-        <em id="id_birthday_msg"></em>
-    </div>
-    <div class="form_items">
-        <label class="items">居住城市：</label>
-        <input id="id_birthday" type='text' name="info[address]" class="ins normal" value="<?php echo $user->address; ?>" />
-    </div>
-    <div class="form_items">
-        <label class="items">自我介绍：</label>
-        <textarea id="id_content" name="info[introduce]" class="ins txt"><?php echo $user->introduce; ?></textarea>
-        <p>还可以输入 <span id="max_words" class="fred">100</span> 字符</p>
-    </div>
-    <div class="form_items pl80">
-        <input type="hidden" id="face_url" name="info[face]" value="<?php echo $user->filename; ?>" />
-        <button id="id_save_btn" type="submit" class="icons btns" locked-msg="提交中...">保 存</button>
-    </div>
-    </form>
+    <br class="clear" />
 </div>
 
 <script type="text/javascript">
     var component = ["cptSetInfoFun"];
+    
+    function cptSetInfoFun() {
+
+        loadUploadify();
+        
+        var $nickname = $("#id_nickname");
+        var $newPasswd = $("#id_newPasswd");
+        var $cfmPasswd = $("#id_cfmPasswd");
+
+        $nickname.blur(function() {
+            $(this).checkInput();
+        });
+        
+        $newPasswd.blur(function() {
+            $(this).checkInput();
+        });
+        
+        $cfmPasswd.blur(function() {
+            $(this).checkInput();
+        });
+
+        $("#id_info_form").submit(function(){
+
+            if ( !$nickname.checkInput() ) {
+                return false;
+            }
+
+            if ( !$newPasswd.checkInput() ) {
+                return false;
+            }
+
+            if ( !$cfmPasswd.checkInput() ) {
+                return false;
+            }
+
+            var saveBtn = $("#id_save_btn");
+            saveBtn.locked();
+
+            $.post(this.action, $(this).serialize(), function(resp) {
+                if (resp.code == 100) {
+                    $newPasswd.val('');
+                    $cfmPasswd.val('');
+                    showSuccess(resp.msg);
+                } else {
+                    showError(resp.msg);
+                }
+
+                saveBtn.unlock();
+            });
+
+            return false;
+        });
+    }
 </script>

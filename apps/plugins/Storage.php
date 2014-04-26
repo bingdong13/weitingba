@@ -18,7 +18,7 @@ class Storage extends \Phalcon\Mvc\User\Plugin
             return array('code' => 200, 'msg' => $newFile);
         }
 
-        return array('code' => 201, 'msg' => '');
+        return array('code' => 201, 'msg' => '本地文件保存失败。');
     }
 
     /**
@@ -65,6 +65,25 @@ class Storage extends \Phalcon\Mvc\User\Plugin
         }
 
         return $res;
+    }
+    
+    public function downloadImg($remote, $filename =''){
+        
+        if( !$filename ){
+            $filename = date('YmdHis') . rand( 1 , 10000 ) . '.png';
+        }
+        
+        $uploads = $this->config->application->uploadDir; //存储文件夹
+        $fullname = $uploads . '/' . $filename;
+        
+        Http::curlDownload($remote, $fullname);
+        
+        if( STORAGE == self::STORAGE_QINIU ){
+            $res = $this->storage2qiniu($fullname, $filename);
+            $filename = $res['code'] == 200 ? $res['msg'] : '';
+        }
+
+        return $filename;
     }
 
 }

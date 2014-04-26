@@ -31,7 +31,7 @@ body{
 #header #nav a,
 #header #nav a:hover { color:#FFF; }
 #header #nav .m { margin-left: 15px; font: 14px/20px 'Microsoft YaHei','黑体'; color:#cacaca}
-#header #nav .sline { padding: 0 15px; color: #8D7250; }
+#header #nav .sline { padding: 0 10px; color: #8D7250; }
 
 .footer {
     position: fixed;
@@ -121,6 +121,10 @@ body:hover .uploadBox { visibility: visible; }
     line-height: 30px;
     display: block;
 }
+.fm_content .sharetool {
+    position:absolute; top:35px; right:0
+}
+
 .fm_content .about a {
     display: inline-block;
     margin: 12px 0;
@@ -509,10 +513,15 @@ body:hover .uploadBox { visibility: visible; }
     border-bottom: 1px dashed #BBB; 
     padding: 20px 0;
     text-align: center;
+    position: relative;
 }
 .content .entry-meta span {
     color: #969696;
     padding: 0 5px;
+}
+
+.content .entry-meta .sharetool {
+    position:absolute; top:15px; right:0
 }
 
 .content .entry-nav {

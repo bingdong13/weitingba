@@ -108,6 +108,76 @@ function setInputLen() {
     }
 }
 
+/**
+ * 导入分享条
+ * @param tool    显示分享条内容的区域
+ * @param showArea  分享内容区域
+ * @return void
+ */
+function loadShareTool(showArea, tool){
+    var getShareStr = function(url, title){
+        var txtStr = '分享到：';
+            txtStr += '<a href="javascript:void(0)" class="share_icon s_sina" title="分享到新浪微博" onclick="openShareTool(\''+ url +'\', \''+ title +'\', \'sina\');"></a>';
+            txtStr += '<a href="javascript:void(0)" class="share_icon s_douban" title="分享到豆瓣" onclick="openShareTool(\''+ url +'\', \''+ title +'\', \'douban\');"></a>';
+            txtStr += '<a href="javascript:void(0)" class="share_icon s_qzone" title="分享到QQ空间" onclick="openShareTool(\''+ url +'\', \''+ title +'\', \'qzone\');"></a>';
+            txtStr += '<a href="javascript:void(0)" class="share_icon s_tqq" title="分享到腾讯微博" onclick="openShareTool(\''+ url +'\', \''+ title +'\', \'tqq\');"></a>';
+            txtStr += '<a href="javascript:void(0)" class="share_icon s_renren" title="分享到人人网" onclick="openShareTool(\''+ url +'\', \''+ title +'\', \'renren\');"></a>';
+            
+        return txtStr;
+    };
+
+    var url = window.location.href;
+    $(showArea).delegate(tool, 'mouseover', function() {
+        $me = $(this);
+
+        var shareTool = $me.find(".tool_area");
+        if(shareTool.children().size() == 0){
+
+            if(typeof $me.attr("ref") !== 'undefined'){
+                url = $me.attr("ref");
+            }
+
+            var title = $me.find(".desc").html();
+            shareTool.html( getShareStr(url, title) );
+        }
+    });
+}
+
+/**
+ * 打开分享页面
+ * @param url    分享内容URL
+ * @param title  分享标题
+ * @param type   分享条类型
+ * @return void
+ */
+function openShareTool(url, title, type){
+    var shareUrl = '';
+    
+    switch(type){
+        case 'sina' :
+            shareUrl = 'http://v.t.sina.com.cn/share/share.php?appkey=3318394053&url='+ encodeURIComponent(url) +'&title='+ encodeURIComponent(title)+'&content=utf8&pic=';
+            break;
+        case 'douban' :
+            shareUrl = 'http://www.douban.com/recommend/?url='+ encodeURIComponent(url) +'&title='+ encodeURIComponent(title) +'&sel=&v=1';
+            break;
+        case 'qzone' :
+            shareUrl = 'http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url='+ encodeURIComponent(url)+ '&title='+encodeURIComponent(title);
+            break;
+        case 'tqq' :
+            shareUrl = 'http://v.t.qq.com/share/share.php?url='+encodeURIComponent(url)+'&title='+encodeURIComponent(title)+'&jumpback=2&noui=1';
+            break;
+        case 'renren' :
+            shareUrl = 'http://share.renren.com/share/buttonshare.do?link='+ encodeURIComponent(url) +'&title='+ encodeURIComponent(title);
+            break;
+        default :
+            break;
+    }
+
+    if(shareUrl){
+        window.open(shareUrl);
+    }
+}
+
 var winfrom = {
     close: function(){
         $('.mask').hide();
@@ -250,8 +320,8 @@ function cptLoginFun() {
 }
 
 // ajax登录
-function ajaxLogin(){
-
+function ajaxLogin(me){
+    $(me).maskWin();
     $("body").delegate("#idLoginForm", "submit", function() {
         var $username = $("#id_username");
         var $password = $("#id_username");
@@ -274,6 +344,12 @@ function ajaxLogin(){
 
         return false;
     });
+}
+            
+// qq登录
+function toQzoneLogin(){
+    
+    window.open("/passport/qzoneLogin", "TencentLogin", "width=700,height=420,menubar=0,scrollbars=1, resizable=0,status=0,titlebar=0,toolbar=0,location=1");
 }
 
 // 退出登录
@@ -355,26 +431,10 @@ function changeBackdrop($obj) {
 
 $(function(){
     setTopbar();
-
-    $("img.lazy").lazyload({ effect : "fadeIn"}); 
     
-    var $loginwin = $("#userLoginWin")
-    if($loginwin.length > 0){
-        $loginwin.on('click', function(e){
-            e.preventDefault();
-
-            $(this).maskWin();
-            ajaxLogin();
-        });
-    }
-
-    var $siterinfo = $("#siterinfo")
-    if($siterinfo.length > 0){
-        $siterinfo.on('click', function(e){
-            e.preventDefault();
-
-            $(this).maskWin();
-        });
+    var $lazy = $("img.lazy");
+    if($lazy.length > 0){
+        $lazy.lazyload({ effect : "fadeIn"});
     }
 
     if(typeof component == 'object'){

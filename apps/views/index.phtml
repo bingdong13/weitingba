@@ -3,6 +3,7 @@
 <head>
     <meta http-equiv="content-type" content="text/html; charset=UTF-8">
     <meta name="created" content="<?php echo date('YmdHis'); ?>">
+    <meta property="qc:admins" content="2302334467646517011636" />
     <meta name="keywords" content="<?php echo isset($keywords) ? $keywords : ''; ?>">
     <meta name="description" content="<?php echo isset($descript) ? $descript : ''; ?>">
     <link href="<?php echo $this->config->url->assets; ?>/images/favicon.ico" rel="SHORTCUT ICON" />
@@ -23,17 +24,21 @@
             </div>
             <div id="nav">
             <?php foreach ($this->config->channel as $row): ?>
-                <a href="<?php echo $row->src; ?>" class="m"><?php echo $row->title; ?></a>
+                <a title="<?php echo isset($row->tip) ? $row->tip : ''; ?>" href="<?php echo $row->src; ?>" class="m" target="<?php echo $row->target; ?>"><?php echo $row->title; ?></a>
             <?php endforeach; ?>
 
                 <span class="login">
                     <span class="sline">|</span>
                 <?php if( $this->userIdentity->isLogin() ): ?>
-                    <a target="_blank" href="<?php echo $this->url->get('account'); ?>"><?php echo $this->userIdentity->getAccount(); ?></a>，
+                    <a target="_blank" href="<?php echo $this->url->get('account'); ?>"><?php echo $this->userIdentity->getNickname(); ?></a>，
                     <a href="javascript:;" onclick="logout();">退出</a>
                 <?php else: ?>
-                    <a id="siterinfo" href="javascript:;" data-url="<?php echo $this->url->get('about'); ?>" title="关于我" class="mr10"><?php echo $this->config->application->siter; ?></a>
-                    <a id="userLoginWin" href="javascript:;" data-url="<?php echo $this->url->get('passport/ajaxLogin'); ?>" title="登录">登录</a>
+                    <a href="javascript:;" title="账号登录" onclick="ajaxLogin(this);" data-url="<?php echo $this->url->get('passport/ajaxLogin'); ?>" class="mr10">登录</a>
+                    <a href="javascript:;" title="QQ登录" onclick="toQzoneLogin();"><img alt="" src="<?php echo $this->config->url->assets; ?>/images/bt_white_24X24.png" width="24" height="24" /></a>
+                <?php endif; ?>
+                <?php if( $this->userIdentity->isAdmin() ): ?>
+                    <span class="sline">|</span>
+                    <a target="_blank" href="<?php echo $this->url->get('backend'); ?>">管理</a>
                 <?php endif; ?>
                 </span>
             </div>

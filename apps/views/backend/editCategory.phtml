@@ -24,8 +24,8 @@
     </div>
     <div class="form_items">
         <label class="items">简介：</label>
-        <textarea id="id_content" name="info[description]" class="ins txt"><?php echo $category->description; ?></textarea>
-        <p>还可以输入 <span id="max_words" class="fred">35</span> 字符</p>
+        <input id="id_content" type="text" name="info[description]" class="ins ins300" value="<?php echo $category->description; ?>" />
+        <p>还可以输入 <span id="max_words" class="fred">24</span> 字符</p>
     </div>
     <div class="form_items">
         <label class="items">排序：</label>
@@ -43,7 +43,6 @@
     </form>
     <br class="clear" />
 </div>
-
 <script type="text/javascript">
     var component = ["cptCategoryFun"];
 </script>

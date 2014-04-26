@@ -130,12 +130,13 @@ class Fm extends PhModel
     }
     
     protected function afterCreate(){
-        $this->deleteListCache();
 
         // 更新分类的条目数
         $category = Category::findFirst( $this->category_id );
         $category->numbers += 1;
         $category->update();
+
+        $this->deleteListCache();
 
         return true;
     }
@@ -147,7 +148,6 @@ class Fm extends PhModel
     }
 
     protected function afterDelete() {
-        $this->deleteListCache();
 
         // 更新分类的条目数
         $category = Category::findFirst( $this->category_id );
@@ -155,6 +155,8 @@ class Fm extends PhModel
             $category->numbers -= 1;
             $category->update();
         }
+
+        $this->deleteListCache();
 
         return true;
     }
@@ -192,11 +194,27 @@ class Fm extends PhModel
             return null;
         }
 
-        return self::findFirst(array(
+        $record = self::findFirst(array(
             'id=:nid: and status=:status:',
             'bind' => array('nid' => $nid, 'status' => 0 ),
             'cache' => array('key' => self::CACHE_FM_KEY . $nid)
         ));
+
+        switch($record->ftype){
+            case self::FM_TYPE_MUSIC:
+                $record->anchortip = '歌手：' . $record->anchor;
+                $record->comeformtip = ($record->comeform ? '作词：' : '') . $record->comeform;
+                break;
+            case self::FM_TYPE_DRAMA:
+                $record->anchortip = '主播：' . $record->anchor;
+                $record->comeformtip = '作者：' . $record->comeform;
+                break;
+            default:
+                $record->anchortip = '主持人：' . $record->anchor;
+                $record->comeformtip = '编导：' . $record->comeform;
+        }
+
+        return $record;
     }
 
     /**
@@ -246,12 +264,28 @@ class Fm extends PhModel
      */
     static public function getLast(){
 
-        return self::findFirst(array(
+        $record = self::findFirst(array(
             'status=:status:',
             'bind' => array('status' => 0 ),
             'order' => 'id DESC',
             'cache' => array('key' => self::CACHE_FM_LAST_KEY)
         ));
+
+        switch($record->ftype){
+            case self::FM_TYPE_MUSIC:
+                $record->anchortip = '歌手：' . $record->anchor;
+                $record->comeformtip = ($record->comeform ? '作词：' : '') . $record->comeform;
+                break;
+            case self::FM_TYPE_DRAMA:
+                $record->anchortip = '主播：' . $record->anchor;
+                $record->comeformtip = '作者：' . $record->comeform;
+                break;
+            default:
+                $record->anchortip = '主持人：' . $record->anchor;
+                $record->comeformtip = '编导：' . $record->comeform;
+        }
+
+        return $record;
     }
     
     /**
@@ -282,6 +316,20 @@ class Fm extends PhModel
         foreach($records as &$row){
             $cachekey = self::CACHE_FM_TIMES_KEY . $row['id'];
             $row['access_times'] += $cache->get( $cachekey );
+
+            switch($row['ftype']){
+                case 1:
+                    $row['anchortip'] = '歌手：' . $row['anchor'];
+                    $row['comeformtip'] = ($row['comeform'] ? '作词：' : '') . $row['comeform'];
+                    break;
+                case 2:
+                    $row['anchortip'] = '主播：' . $row['anchor'];
+                    $row['comeformtip'] = '作者：' . $row['comeform'];
+                    break;
+                default:
+                    $row['anchortip'] = '主持人：' . $row['anchor'];
+                    $row['comeformtip'] = '编导：' . $row['comeform'];
+            }
         }
         
         return $records;

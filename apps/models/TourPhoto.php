@@ -109,12 +109,13 @@ class TourPhoto extends PhModel
      * @param integer $nid 记录ID
      * @return boolean
      */
-    public function deleteByTour($tid){
+    static public function delByTourId($tid){
 
-        $modelsManager = $this->getDI()->getModelsManager();
-        $phql = "DELETE FROM TourPhoto WHERE TourPhoto.tour_id = {$tid}";
-        $modelsManager->executeQuery($phql);
+        $records = self::find(array(
+            'tour_id=:tid:',
+            'bind' => array('tid' => $tid)
+        ));
 
-        return TRUE;
+        return $records->delete();
     }
 }

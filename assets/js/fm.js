@@ -3,11 +3,12 @@ var $audio = null;
 function cptIndexFun() {
     var bgImage = $("#bg").attr("bg-url");
     $.fillmore({src: bgImage, speed: "fast"});
-
-    if (isLogin == 1) {
+    
+    var $saveBg = $("#saveBg");
+    if ( $saveBg.length > 0 ) {
         changeBackdrop();
         
-        $("#saveBg").on("click", function(e) {
+        $saveBg.on("click", function(e) {
             e.preventDefault();
             
             if (!confirm("确定要保存吗？")) {
@@ -39,10 +40,11 @@ function cptFmFun() {
     openNavigate();
     
     // 更换背景图片
-    if (isLogin == 1) {
+    var $saveBg = $("#saveBg");
+    if ( $saveBg.length > 0 ) {
         changeBackdrop();
         
-        $("#saveBg").on("click", function(e) {
+        $saveBg.on("click", function(e) {
             e.preventDefault();
 
             if (!confirm("确定要保存吗？")) {
@@ -71,10 +73,11 @@ function cptTourFun(){
     var bgImage = $tourbox.attr("data-url");
     $tourbox.css("background-image", 'url('+ bgImage +')');
 
-    if (isLogin == 1) {
+    var $saveBg = $("#saveBg");
+    if ( $saveBg.length > 0 ) {
         changeBackdrop($tourbox);
         
-        $("#saveBg").on("click", function(e) {
+        $saveBg.on("click", function(e) {
             e.preventDefault();
 
             if (!confirm("确定要保存吗？")) {

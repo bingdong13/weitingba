@@ -8,8 +8,12 @@
     </div>
     <div class="form_items">
         <label class="items">关键字：</label>
-        <input type="text" name="info[keywords]" class="ins" value="<?php echo $note->keywords; ?>" />
-        <input type="text" name="info[comeform]" class="ins ml10" value="<?php echo $note->comeform; ?>" placeholder="来源" />
+        <input type="text" name="info[keywords]" class="ins normal" value="<?php echo $note->keywords; ?>" />
+    </div>
+    <div class="form_items">
+        <label class="items">来源：</label>
+        <input type="text" name="info[comeform]" class="ins ins130" value="<?php echo $note->comeform; ?>" />
+        <input type="text" name="info[form_url]" class="ins ml10 normal" value="<?php echo $note->form_url; ?>" placeholder="来源url" />
     </div>
     <div class="form_items">
         <label class="items">简介：</label>
@@ -34,7 +38,6 @@
     </div>
     </form>
 </div>
-
 <script type="text/javascript">
     var component = ["cptNoteFun"];
 </script>

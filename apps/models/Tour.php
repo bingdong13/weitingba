@@ -97,10 +97,12 @@ class Tour extends PhModel
         return true;
     }
 
-    protected function afterDelete() {
+    public function beforeDelete() {
 
-        $photo = new TourPhoto();
-        $photo->deleteByTour($this->tour_id);
+        return TourPhoto::delByTourId($this->id);
+    }
+
+    protected function afterDelete() {
         
         $this->deleteListCache();
 
