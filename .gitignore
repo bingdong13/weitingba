@@ -1,7 +1,9 @@
 /uploads/
 /public/develop.php
-/data/sql/
-/data/crontab/
+/data/
+/crontab/
 /apps/cache/
 /apps/logs/
 /apps/config/config.dev.php
+/apps/sdk/qq/comm/inc.php
+/apps/sdb/qiniu/conf.php
