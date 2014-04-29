@@ -9,15 +9,10 @@
  */
 define('STORAGE', 'qiniu');
 
-/**
- *  当前使用的图片源(CDN)：
- *  local 本地：http://img.lvmaohai.cn/；
- *  qiniu 七牛：http://img-wtb.qiniudn.com/；
- */
 $config['url'] = array(
     'www' => 'http://www.lvmaohai.cn',
     'assets' => 'http://static.lvmaohai.cn',
-    'img' => 'http://img-wtb.qiniudn.com/',
+    'img' => 'http://img.lvmaohai.cn/',
 );
 
 // 自定义类

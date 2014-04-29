@@ -25,8 +25,6 @@ class TourController extends ControllerBase {
         $record = $tour->getLast();
         if( !empty($record) ){
 
-            $record->access_times += $tour->increment( $record->id );
-
             if( !$record->bg_url ){
                 $record->bg_url = $this->config->url->img . 'bg_default.jpg';
             }else{

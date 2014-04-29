@@ -128,7 +128,8 @@ img, #nav a, #category a {
 .show_box .show_title .pos { position:absolute; top:26px; right:0 }
 .show_box .show_title .sline { margin: 0 8px; color: #CCC; }
 .show_box .show_content { padding-top: 25px; font-size: 14px; line-height: 26px; }
-.show_box .show_content p { margin-bottom: 20px; }
+.show_box .show_content p { margin-bottom: 6px; }
+.show_box .show_content .show_img { max-width: 600px;}
 
 .prevnext { border-bottom: 1px dashed #BBB; padding: 20px 0; position: relative; }
 .prevnext .r { position: absolute; right: 0; top: 20px; }

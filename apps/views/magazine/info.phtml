@@ -14,7 +14,13 @@
                 <span>发布于：<?php echo $zine->create_time; ?></span>
                 <span class="ml10">阅读：<?php echo $zine->access_times; ?></span>
                 <?php if($zine->comeform): ?>
-                <span class="ml10">来源：<a target="_blank" href="<?php echo $zine->form_url; ?>"><?php echo $zine->comeform; ?></a></span>
+                <span class="ml10">来源：
+                <?php if($zine->form_url): ?>
+                    <a target="_blank" href="<?php echo $zine->form_url; ?>"><?php echo $zine->comeform; ?></a>
+                <?php else: ?>
+                    <?php echo $zine->comeform; ?>
+                <?php endif; ?>
+                </span>
                 <?php endif; ?>
                 <?php if($isAdmin): ?>
                 <span class="pos">
@@ -24,8 +30,9 @@
             </div>
             <div class="show_content">
                 <p>导读：<?php echo $zine->description; ?></p>
-                <p class="tac"><img alt="<?php echo $zine->title; ?>" src="<?php echo $this->config->url->img, $zine->face_url; ?>" width="600" height="400" /></p>
+                <div class="tac mb20 mt20"><img class="show_img" alt="<?php echo $zine->title; ?>" src="<?php echo $this->config->url->img, $zine->face_url; ?>" /></div>
                 <?php echo $zine->content; ?>
+                <div class="bdsharebuttonbox mt20"><a href="#" class="bds_more" data-cmd="more"></a><a href="#" class="bds_qzone" data-cmd="qzone" title="分享到QQ空间"></a><a href="#" class="bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a><a href="#" class="bds_tqq" data-cmd="tqq" title="分享到腾讯微博"></a><a href="#" class="bds_renren" data-cmd="renren" title="分享到人人网"></a><a href="#" class="bds_weixin" data-cmd="weixin" title="分享到微信"></a></div>
             </div>
         </div>
         <!--showbox-->
@@ -78,3 +85,8 @@
     })();
 </script>
 <script src="http://qzonestyle.gtimg.cn/qzone/app/qzlike/qzopensl.js#jsdate=20111201" charset="utf-8"></script>
+
+
+<script>
+window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"32"},"share":{},"image":{"viewList":["qzone","tsina","tqq","renren","weixin"],"viewText":"分享到：","viewSize":"16"}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];
+</script>

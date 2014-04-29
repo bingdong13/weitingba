@@ -18,6 +18,19 @@ input, select, button, textarea {
 }
 button, .curp { cursor: pointer }
 select { position: relative; z-index: 4 }
+pre {
+    white-space: pre-wrap; 
+    word-wrap: break-word; 
+    color: rgb(0, 0, 0); 
+    line-height: 26px; 
+    border: 1pt solid rgb(174, 189, 204); 
+    background-color: rgb(243, 245, 247); 
+    padding: 5pt; 
+    margin: 5px 0;
+    font-family: courier, monospace; 
+    font-size: 13px; 
+    overflow: auto;
+}
 
 a:link { color: #369; text-decoration: none }
 a:visited { color: #669; text-decoration: none }
@@ -81,6 +94,7 @@ a:active { color: #369; text-decoration: none }
 .mt10 { margin-top: 10px }
 .mt20 { margin-top: 20px }
 .mb10 { margin-bottom: 10px }
+.mb20 { margin-bottom: 20px }
 .mlt5 { margin: 0 5px;}
 
 .btnIcon { background:url(../images/all_btns.gif) no-repeat; cursor:pointer; }
